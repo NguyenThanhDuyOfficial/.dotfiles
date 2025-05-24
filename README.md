@@ -2,11 +2,11 @@
 ### 1. Install dependencies:
 **Pacman:**
 ```
-pacman -S stow
+pacman -S stow foot fish
 ```
 **Yay:**
 ```
-yay -S stow
+yay -S stow foot fish
 ```
 ### 2. Clone the repository:
 ```bash
@@ -33,7 +33,7 @@ cd ~/.dotfiles/Themes && ls
 ```bash
 stow -t ~ -R Catppuccin-Macchiato
 ```
-### 3. One-Liner 
+### One-Liner 
 ```
 cd ~/.dotfiles/Themes && stow -t ~ -R Catppuccin-Macchiato
 ```
