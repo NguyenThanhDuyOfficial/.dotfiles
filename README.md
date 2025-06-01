@@ -9,8 +9,15 @@ You’re welcome to use these dotfiles directly, **but I highly recommend treati
 >  _You’ll never know how awesome your own dotfiles can be — until you start creating them._
 ## 📦 Dependencies
 Software used in this dotfiles:
-- Archlinux
-- Hyprland
+- [Archlinux](https://archlinux.org/)
+- [Hyprland](https://hyprland.org/)
+- [foot](https://codeberg.org/dnkl/foot)
+- [swww](https://github.com/LGFae/swww)
+- [rofi-wayland](https://github.com/lbonn/rofi)
+- CaskaydiaMono Nerd Font
+- Bibata Modern Ice Cursor Theme
+- [Fish](https://fishshell.com/)
+- [Neovim](https://neovim.io/)
 - And many more...
 ## 🚀 Getting Started
 🛠️ _I currently don't plan to write an installation script._  
@@ -22,7 +29,7 @@ Software used in this dotfiles:
 4. Install software dependencies used in this dotfiles setup  
 _(Feel free to change or add tools as you prefer)_
 ```bash
-yay -S stow
+yay -S stow foot swww rofi-wayland ttf-cascadia-mono-nerd bibata-cursor-theme fish neovim
 ```
 ### ⬇️ Installation
 Clone the repository then symlink using stow:
