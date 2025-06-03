@@ -19,6 +19,7 @@ Software used in this dotfiles:
 - [Fish](https://fishshell.com/)
   - [Starship](https://github.com/starship/starship)
 - [Neovim](https://neovim.io/)
+- [eww](https://github.com/elkowar/eww)
 - And many more...
 ## 🚀 Getting Started
 🛠️ _I currently don't plan to write an installation script._  
@@ -27,10 +28,11 @@ Software used in this dotfiles:
 1. Install a Linux Distribution as your choice
 2. Install [Hyprland](https://wiki.hyprland.org/Getting-Started/Installation/)
 3. Install an AUR helper like [yay](https://github.com/Jguer/yay)
-4. Install software dependencies used in this dotfiles setup  
+4. Install software dependencies used in this dotfiles setup
 _(Feel free to change or add tools as you prefer)_
 ```bash
 yay -S stow foot swww rofi-wayland ttf-cascadia-mono-nerd bibata-cursor-theme fish neovim starship
+4.1 Install [eww](https://elkowar.github.io/eww)
 ```
 ### ⬇️ Installation
 Clone the repository then symlink using stow:
