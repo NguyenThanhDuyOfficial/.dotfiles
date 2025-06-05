@@ -32,8 +32,8 @@ Software used in this dotfiles:
 _(Feel free to change or add tools as you prefer)_
 ```bash
 yay -S stow foot swww rofi-wayland ttf-cascadia-mono-nerd bibata-cursor-theme fish neovim starship
-4.1 Install [eww](https://elkowar.github.io/eww)
 ```
+4.1 Install [eww](https://elkowar.github.io/eww)
 ### ⬇️ Installation
 Clone the repository then symlink using stow:
 ```bash

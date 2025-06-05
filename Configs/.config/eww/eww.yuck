@@ -1,0 +1,49 @@
+
+(defwindow StatusBar
+  :monitor 0
+  :geometry (geometry 
+    :x "0px"
+    :y "0px"
+    :width "30px"
+    :height "100%"
+    :anchor "left center")
+  :stacking "fg"
+  :exclusive true
+  :focusable "none"
+(status_bar))
+
+
+(defwidget status_bar[]
+  (centerbox :orientation "v"
+    (top)
+    (center)
+    (bottom)
+  )
+)
+
+
+(defwidget top[]
+  (box
+  )
+)
+
+
+(defwidget center[]
+    (box
+      (clock)
+    )
+)
+
+(defwidget clock[]
+  (box  :valign "center" :orientation "v" :space-evenly false 
+    (label :class "clock_label" :text {formattime(EWW_TIME, "%H")})
+    (label :class "clock_label" :text {formattime(EWW_TIME, "%M")})
+  )
+)
+
+
+(defwidget bottom[]
+  (box :valign "end"
+  )
+)
+
