@@ -4,7 +4,7 @@
   :geometry (geometry 
     :x "0px"
     :y "0px"
-    :width "30px"
+    :width "40px"
     :height "100%"
     :anchor "left center")
   :stacking "fg"
@@ -36,14 +36,46 @@
 
 (defwidget clock[]
   (box  :valign "center" :orientation "v" :space-evenly false 
-    (label :class "clock_label" :text {formattime(EWW_TIME, "%H")})
-    (label :class "clock_label" :text {formattime(EWW_TIME, "%M")})
+    (label :class "clock_label" :wrap true :text {formattime(EWW_TIME, "%H %M")})
   )
 )
 
 
 (defwidget bottom[]
-  (box :valign "end"
+  (box :class "bottom" :valign "end" :orientation "v" :space-evenly false
+    (brightness)
+    (volume)
   )
 )
 
+(defvar brightness_value "100")
+(defvar is_brightness_expand false)
+(defwidget brightness[]
+  (eventbox :class "brightness" :onhover "${EWW_CMD} update is_brightness_expand=true" :onhoverlost "${EWW_CMD} update is_brightness_expand=false"
+    (box :orientation "v" :space-evenly false
+      (revealer :transition "slideup" :reveal is_brightness_expand
+        (box
+          (scale :class "scale" :orientation "v" :flipped true :value brightness_value :min 0 :max 101 :onchange "brightnessctl s {}% && ./scripts/update-brightness-value.sh" )
+          (label :class "label" :show-truncated false :wrap true :wrap-mode "char" :text brightness_value)
+        )
+      )
+      (button :height 30 "󰌵")
+    )
+  )
+)
+
+(defvar volume_value "100")
+(defvar is_volume_expand false)
+(defwidget volume[]
+  (eventbox :class "volume" :onhover "${EWW_CMD} update is_volume_expand=true" :onhoverlost "${EWW_CMD} update is_volume_expand=false"
+    (box :orientation "v" :space-evenly false
+      (revealer :transition "slideup" :reveal is_volume_expand
+        (box
+          (scale :class "scale" :orientation "v" :flipped true :value volume_value :min 0 :max 101 :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% && ./scripts/update-volume-value.sh" )
+          (label :class "label" :show-truncated false :wrap true :wrap-mode "char" :text volume_value)
+        )
+      )
+      (button :height 30 " ")
+    )
+  )
+)
