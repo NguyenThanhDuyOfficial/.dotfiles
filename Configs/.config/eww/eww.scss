@@ -7,6 +7,20 @@
   font-family: "CaskaydiaMono Nerd Font";
   color: #cad3f5;
 }
+
+.top {
+  padding-top: 10px;
+}
+.workspaces {
+  font-size: 16px;
+  .active {
+      font-weight: 900;
+  }
+  .inactive {
+    opacity: 0.2;
+  }
+}
+
 .clock_label {
   font-weight: bold;
   font-size: 16px;

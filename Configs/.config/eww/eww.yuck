@@ -23,7 +23,20 @@
 
 
 (defwidget top[]
-  (box
+  (box :class "top" :valign "start" :orientation "v"
+    (workspaces)
+  )
+)
+
+(defvar workspaces "[1,0,0,0,0,0]")
+(defwidget workspaces[]
+  (box :class "workspaces" :halign "center" :orientation "v" :spacing 3
+    (button :class {workspaces[0] == 0 ? "inactive" : "active"} "w")
+    (button :class {workspaces[1] == 0 ? "inactive" : "active"} "i")
+    (button :class {workspaces[2] == 0 ? "inactive" : "active"} "s")
+    (button :class {workspaces[3] == 0 ? "inactive" : "active"} "d")
+    (button :class {workspaces[4] == 0 ? "inactive" : "active"} "o")
+    (button :class {workspaces[5] == 0 ? "inactive" : "active"} "m")
   )
 )
 

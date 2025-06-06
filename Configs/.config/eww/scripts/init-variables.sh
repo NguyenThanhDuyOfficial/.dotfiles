@@ -1,2 +1,6 @@
 #!/usr/bin/bash
-./update-volume-value.sh
+
+scripts=$HOME/.config/eww/scripts/
+$scripts/update-volume-value.sh
+$scripts/update-brightness-value.sh
+$scripts/update-workspaces.sh

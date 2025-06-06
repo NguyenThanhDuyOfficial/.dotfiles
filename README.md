@@ -31,7 +31,7 @@ Software used in this dotfiles:
 4. Install software dependencies used in this dotfiles setup
 _(Feel free to change or add tools as you prefer)_
 ```bash
-yay -S stow foot swww rofi-wayland ttf-cascadia-mono-nerd bibata-cursor-theme fish neovim starship
+yay -S stow foot swww rofi-wayland ttf-cascadia-mono-nerd bibata-cursor-theme fish neovim starship socat
 ```
 4.1 Install [eww](https://elkowar.github.io/eww)
 ### ⬇️ Installation
