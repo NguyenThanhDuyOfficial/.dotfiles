@@ -33,84 +33,79 @@
   )
 )
 
+(defvar weather '[
+  {
+    "current": { "icon": "󰖨", "temp": 0, "wind": 0, "precipMM": 0.0 },
+    "date": "14/6",
+    "data": [
+      { "name": "0-3", "temp": 10, "wind": 1, "precipMM": 0.0 },
+      { "name": "3-6", "temp": 1, "wind": 1, "precipMM": 0.0 },
+      { "name": "6-9", "temp": 1, "wind": 1, "precipMM": 0.0 },
+      { "name": "9-12", "temp": 1, "wind": 1, "precipMM": 0.0 },
+      { "name": "12-15", "temp": 1, "wind": 1, "precipMM": 0.0 },
+      { "name": "15-18", "temp": 1, "wind": 1, "precipMM": 0.0 },
+      { "name": "18-21", "temp": 1, "wind": 1, "precipMM": 0.0 },
+      { "name": "21-24", "temp": 1, "wind": 1, "precipMM": 0.0 }
+    ]
+  },
+  {
+    "date": "15/6",
+    "data": [
+      { "name": "0-3", "temp": 10, "wind": 2, "precipMM": 0.0 },
+      { "name": "3-6", "temp": 2, "wind": 2, "precipMM": 0.0 },
+      { "name": "6-9", "temp": 2, "wind": 2, "precipMM": 0.0 },
+      { "name": "9-12", "temp": 2, "wind": 2, "precipMM": 0.0 },
+      { "name": "12-15", "temp": 2, "wind": 2, "precipMM": 0.0 },
+      { "name": "15-18", "temp": 2, "wind": 2, "precipMM": 0.0 },
+      { "name": "18-21", "temp": 2, "wind": 2, "precipMM": 0.0 },
+      { "name": "21-24", "temp": 2, "wind": 2, "precipMM": 0.0 }
+    ]
+  },
+  {
+    "date": "15/6",
+    "data": [
+      { "name": "0-3", "temp": 3, "wind": 3, "precipMM": 0.0 },
+      { "name": "3-6", "temp": 3, "wind": 3, "precipMM": 0.0 },
+      { "name": "6-9", "temp": 3, "wind": 3, "precipMM": 0.0 },
+      { "name": "9-12", "temp": 3, "wind": 3, "precipMM": 0.0 },
+      { "name": "12-15", "temp": 3, "wind": 3, "precipMM": 0.0 },
+      { "name": "15-18", "temp": 3, "wind": 3, "precipMM": 0.0 },
+      { "name": "18-21", "temp": 3, "wind": 3, "precipMM": 0.0 },
+      { "name": "21-24", "temp": 3, "wind": 3, "precipMM": 0.0 }
+    ]
+  }
+]')
 
 (defwidget weather[]
   (box :class "weather" :width 552 :height 352 :orientation "v" :space-evenly false
-    (box :class "top-box" :width "552" :height 176 :space-evenly false
-      (label :class "icon" :halign "start" :text "󰖨" :hexpand true)
-      (label :class "text" :halign "end" :wrap true :wrap-mode "word" :limit-width 6 :lines 3 :text "15󰔄 15km/h 0.5mm")
+    (box :class "top-box" :height 176 :space-evenly false
+      (label :class "icon" :halign "start" :hexpand true :text {weather[0].current.icon})
+      (label :class "text" :halign "end"
+        :wrap true :wrap-mode "word" :justify "center" :limit-width 6 :lines 3
+        :text "${weather[0].current.temp}󰔄 ${weather[0].current.wind}km/h ${weather[0].current.precipMM}mm")
     )
     (box :class "bottom-box" :orientation "v" :space-evenly false
-      (box :class "title"  :width 552 :height 40 :space-evenly false
+      (box :class "title" :width 552 :height 40 :space-evenly false
         (button :width 69 "󰁒")
-        (label  :width 414 :text "14/6")
-        (button :width 69 "󰁙" )
+        (label  :width 414 :text {weather[1].date})
+        (button :width 69 "󰁙")
       )
       (stack :selected 0
-        (stack :selected 0
-          (box :space-evenly false
-            (box :class "item-box" :style "border-style: none solid solid solid; border-radius: 0 0 0 20px;" :hexpand true
-              :orientation "v" :space-evenly false
-              (label :class "time" :style "border-style: none none solid none;" :height 36
-                :text "From-To")
-              (label :class "time" :height 100
-                :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
-            )
+        (box :space-evenly false
+          (box :class "item-box" :style "border-style: none solid solid solid; border-radius: 0 0 0 20px;" :hexpand true
+            :orientation "v" :space-evenly false
+            (label :class "time" :style "border-style: none none solid none;" :height 36
+              :text "From-To")
+            (label :class "time" :height 100
+              :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
+          )
+          (for data in {weather[1].data}
             (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
               (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
+                :text {data.name}
               )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
-            )
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
-              )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
-            )
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
-              )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
-            )
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
-              )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
-            )
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
-              )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
-            )
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
-              )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
-            )
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
-              )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
-            )
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none; border-radius: 0 0 20px 0;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
-                :text "6-9"
-              )
-              (label :class "value" :width 54 :height 100 
-                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+              (label :class "value" :width 54 :height 100
+                :limit-width 3 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "${data.temp} ${data.wind} ${data.precipMM}" )
             )
           )
         )
