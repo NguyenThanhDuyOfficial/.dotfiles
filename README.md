@@ -42,6 +42,8 @@ git clone https://github.com/NguyenThanhDuyOfficial/.dotfiles && cd .dotfiles &&
 ### 🔧 Configuration
 In this part, you're expected to follow the **DIY (Do It Yourself)** principle:  Visit the official websites of the software you use, read the documentation, and configure everything by yourself 💪🏼
 
+### Fixed Issues With Discord
+add --enable-features=UseOzonPlatform --ozone-platform=wayland --enable-wayland-me to desktop file.
 ## 💡 Usage
 This section will be developed continuously throughout the evolution of the dotfiles.
 ## 🤝 Contributing

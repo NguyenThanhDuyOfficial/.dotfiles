@@ -1,0 +1,68 @@
+.Dashboard {
+  font-family: "CaskaydiaMono Nerd Font";
+}
+.profile {
+  border-radius: 20px;
+  background-color: #24273a;
+  color: #cad3f5;
+  .face {
+    border-width: 3px;
+    border-color: #6e738d;
+    border-style: solid;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-position: center;
+  }
+  .name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .username {
+    font-size: 12px;
+  }
+}
+.weather {
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 20px;
+  background-color: #24273a;
+  color: #cad3f5;
+  .top-box {
+    padding: 0 50px;
+    .icon {
+      font-size: 80px;
+    }
+    .text {
+      font-size: 18px;
+    }
+  }
+
+
+  .bottom-box {
+    
+    .title {
+      border-width: 2px;
+      border-color: #cad3f5;
+      border-style: solid;
+      button:hover {
+        background-color: red;
+      }
+    }
+    .item-box {
+      border-width: 2px;
+      border-color: #cad3f5;
+      .time {
+        border-width: 2px;
+        border-color: #cad3f5;
+      }
+      .value {
+        margin: 0 5px;
+        font-weight: normal;
+      }
+    }
+
+  }
+}
+
+

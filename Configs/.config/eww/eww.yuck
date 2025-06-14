@@ -1,1 +1,2 @@
 (include "./status_bar/status_bar.yuck")
+(include "./dashboard/dashboard.yuck")

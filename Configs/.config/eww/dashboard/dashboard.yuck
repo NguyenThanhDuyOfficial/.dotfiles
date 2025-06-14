@@ -1,0 +1,121 @@
+(defwindow Dashboard
+  :monitor 0
+  :geometry (geometry 
+    :x "0"
+    :y "0"
+    :width "1024px"
+    :height "512px"
+    :anchor "center")
+  :stacking "fg"
+  :exclusive false
+  :focusable "none"
+  (dashboard)
+)
+
+(defwidget dashboard[]
+  (box :orientation "v" :space-evenly false
+    (box :valign "start" :halign "start" :spacing 20 :space-evenly false :height 350
+      (profile)
+      (weather)
+      (box :hexpand true)
+    )
+    (box :vexpand true)
+  )
+)
+
+(defwidget profile[]
+  (box :class "profile" :width 248 :height 352
+    (box :orientation "v" :space-evenly false  :halign "center" :valign "center" :spacing 20
+      (label :class "face" :halign "center" :width 150 :height 150 :style "background-image: url('file:///home/Dust/.face.icon');")
+      (button :class "name" :halign "center" "Dust")
+      (button :class "username" :halign "center" "@NguyenThanhDuyOfficial")
+    )
+  )
+)
+
+
+(defwidget weather[]
+  (box :class "weather" :width 552 :height 352 :orientation "v" :space-evenly false
+    (box :class "top-box" :width "552" :height 176 :space-evenly false
+      (label :class "icon" :halign "start" :text "󰖨" :hexpand true)
+      (label :class "text" :halign "end" :wrap true :wrap-mode "word" :limit-width 6 :lines 3 :text "15󰔄 15km/h 0.5mm")
+    )
+    (box :class "bottom-box" :orientation "v" :space-evenly false
+      (box :class "title"  :width 552 :height 40 :space-evenly false
+        (button :width 69 "󰁒")
+        (label  :width 414 :text "14/6")
+        (button :width 69 "󰁙" )
+      )
+      (stack :selected 0
+        (stack :selected 0
+          (box :space-evenly false
+            (box :class "item-box" :style "border-style: none solid solid solid; border-radius: 0 0 0 20px;" :hexpand true
+              :orientation "v" :space-evenly false
+              (label :class "time" :style "border-style: none none solid none;" :height 36
+                :text "From-To")
+              (label :class "time" :height 100
+                :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none; border-radius: 0 0 20px 0;" :space-evenly false
+              (label :class "time" :height 36 :style "border-style: none none solid none;"
+                :text "6-9"
+              )
+              (label :class "value" :width 54 :height 100 
+                :limit-width 2 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "15 15 0.5" )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
