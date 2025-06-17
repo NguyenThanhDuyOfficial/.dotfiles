@@ -1,6 +1,6 @@
 >[!WARNING]
 > These dotfiles are **under active development**.
-> Use at your own risk — things may change, break, or be incomplete.```
+> Use at your own risk — things may change, break, or be incomplete.
 ## 🌈 About The Dotfiles
 I came to Linux with a lot of surprise at how freely I could do whatever I wanted. It made me wonder — what if I could configure my own Linux system from scratch? I wanted to create a truly awesome environment — a place I could genuinely feel at home.
 
@@ -43,7 +43,7 @@ git clone https://github.com/NguyenThanhDuyOfficial/.dotfiles && cd .dotfiles &&
 In this part, you're expected to follow the **DIY (Do It Yourself)** principle:  Visit the official websites of the software you use, read the documentation, and configure everything by yourself 💪🏼
 
 ### Fixed Issues With Discord
-add --enable-features=UseOzonPlatform --ozone-platform=wayland --enable-wayland-me to desktop file.
+add --enable-features=UseOzonPlatform --ozone-platform=wayland --enable-wayland-ime to desktop file.
 ## 💡 Usage
 This section will be developed continuously throughout the evolution of the dotfiles.
 ## 🤝 Contributing

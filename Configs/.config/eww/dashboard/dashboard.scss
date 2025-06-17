@@ -44,24 +44,28 @@
     .title {
       border-width: 2px;
       border-color: #cad3f5;
-      border-style: solid;
+      border-style: solid solid none solid;
       button:hover {
-        background-color: red;
+        background-color: #363a4f;
       }
     }
-    .item-box {
+    .stack-box {
+      border-style: solid;
       border-width: 2px;
       border-color: #cad3f5;
-      .time {
+      border-radius: 0 0 20px 20px;
+      
+      .item-box {
+        border-style: none none none solid;
         border-width: 2px;
         border-color: #cad3f5;
       }
       .value {
-        margin: 0 10px;
-        font-weight: normal;
+        border-style: solid none none none;
+        border-width: 2px;
+        border-color: #cad3f5;
       }
     }
-
   }
 }
 

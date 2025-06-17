@@ -62,7 +62,7 @@
     ]
   },
   {
-    "date": "15/6",
+    "date": "16/6",
     "data": [
       { "name": "0-3", "temp": 3, "wind": 3, "precipMM": 0.0 },
       { "name": "3-6", "temp": 3, "wind": 3, "precipMM": 0.0 },
@@ -75,6 +75,8 @@
     ]
   }
 ]')
+(defvar stack_selected 0)
+(defvar stack_transition "slideright")
 
 (defwidget weather[]
   (box :class "weather" :width 552 :height 352 :orientation "v" :space-evenly false
@@ -86,22 +88,60 @@
     )
     (box :class "bottom-box" :orientation "v" :space-evenly false
       (box :class "title" :width 552 :height 40 :space-evenly false
-        (button :width 69 "󰁒")
-        (label  :width 414 :text {weather[1].date})
-        (button :width 69 "󰁙")
+        (button :width 69
+          :onclick `${EWW_CMD} update stack_transition="slideright" && ${stack_selected > 0 ? "${EWW_CMD} update stack_selected=${stack_selected - 1}" : ""}`
+          "󰁒")
+        (label  :width 414 :text "${weather[stack_selected].date}")
+        (button :width 69
+          :onclick `${EWW_CMD} update stack_transition="slideleft" && ${stack_selected < 2 ? "${EWW_CMD} update stack_selected=${stack_selected + 1}" : ""}`
+          "󰁙")
       )
-      (stack :selected 0
-        (box :space-evenly false
-          (box :class "item-box" :style "border-style: none solid solid solid; border-radius: 0 0 0 20px;" :hexpand true
+      (stack :selected "${stack_selected}" :transition "${stack_transition}"
+        (box :space-evenly false :class "stack-box"
+          (box :hexpand true
             :orientation "v" :space-evenly false
-            (label :class "time" :style "border-style: none none solid none;" :height 36
+            (label :class "time" :height 36
+              :text "From-To")
+            (label :class "value" :height 100
+              :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
+          )
+          (for data in {weather[0].data}
+            (box :orientation "v" :class "item-box" :space-evenly false
+              (label :class "time" :height 36 :text {data.name}
+              )
+              (label :class "value" :width 54 :height 100
+                :limit-width 3 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "${data.temp} ${data.wind} ${data.precipMM}" )
+            )
+          )
+        )
+        (box :space-evenly false :class "stack-box"
+          (box :hexpand true
+            :orientation "v" :space-evenly false
+            (label :class "time" :height 36
               :text "From-To")
             (label :class "time" :height 100
               :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
           )
           (for data in {weather[1].data}
-            (box :orientation "v" :class "item-box" :style "border-style: none solid solid none;" :space-evenly false
-              (label :class "time" :height 36 :style "border-style: none none solid none;"
+            (box :orientation "v" :class "item-box"  :space-evenly false
+              (label :class "time" :height 36                :text {data.name}
+              )
+              (label :class "value" :width 54 :height 100
+                :limit-width 3 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "${data.temp} ${data.wind} ${data.precipMM}" )
+            )
+          )
+        )
+        (box :space-evenly false :class "stack-box"
+          (box :hexpand true
+            :orientation "v" :space-evenly false
+            (label :class "time" :height 36
+              :text "From-To")
+            (label :class "time" :height 100
+              :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
+          )
+          (for data in {weather[2].data}
+            (box :orientation "v" :class "item-box" :space-evenly false
+              (label :class "time" :height 36
                 :text {data.name}
               )
               (label :class "value" :width 54 :height 100
