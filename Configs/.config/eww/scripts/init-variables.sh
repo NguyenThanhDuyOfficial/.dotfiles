@@ -10,3 +10,5 @@ $scripts/update-volume-value.sh
 
 
 $scripts/update-workspaces.sh
+
+$scripts/update-weather.sh

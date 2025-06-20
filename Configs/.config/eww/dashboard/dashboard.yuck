@@ -13,29 +13,52 @@
 )
 
 (defwidget dashboard[]
-  (box :orientation "v" :space-evenly false
-    (box :valign "start" :halign "start" :spacing 20 :space-evenly false :height 350
+  (box
+    :orientation "v" :space-evenly false
+
+    (box :spacing 20 :space-evenly false
+      :valign "start" :halign "start" :height 350
+
       (profile)
       (weather)
+
       (box :hexpand true)
     )
+
     (box :vexpand true)
   )
 )
 
 (defwidget profile[]
-  (box :class "profile" :width 248 :height 352
-    (box :orientation "v" :space-evenly false  :halign "center" :valign "center" :spacing 20
-      (label :class "face" :halign "center" :width 150 :height 150 :style "background-image: url('file:///home/Dust/.face.icon');")
-      (button :class "name" :halign "center" "Dust")
-      (button :class "username" :halign "center" "@NguyenThanhDuyOfficial")
+  (box
+    :class "profile" :width 248 :height 352
+
+    (box
+      :spacing 20 :orientation "v" :space-evenly false
+      :valign "center" :halign "center"
+
+      (label
+        :class "face" :halign "center" :width 150 :height 150 
+        :style "background-image: url('file:///home/Dust/.face.icon');")
+
+      (button
+        :class "name" :halign "center" 
+        "Dust")
+      (button
+        :class "username" :halign "center"
+        "@NguyenThanhDuyOfficial")
     )
   )
 )
 
 (defvar weather '[
   {
-    "current": { "icon": "󰖨", "temp": 0, "wind": 0, "precipMM": 0.0 },
+    "icon": "󰖨",
+    "temp": 0,
+    "wind": 0,
+    "precipMM": 0.0
+  },
+  {
     "date": "14/6",
     "data": [
       { "name": "0-3", "temp": 10, "wind": 1, "precipMM": 0.0 },
@@ -79,78 +102,95 @@
 (defvar stack_transition "slideright")
 
 (defwidget weather[]
-  (box :class "weather" :width 552 :height 352 :orientation "v" :space-evenly false
-    (box :class "top-box" :height 176 :space-evenly false
-      (label :class "icon" :halign "start" :hexpand true :text {weather[0].current.icon})
-      (label :class "text" :halign "end"
+  (box
+    :class "weather" :width 552 :height 352
+    :orientation "v" :space-evenly false
+
+    (box
+      :class "top-box" :height 176
+      :space-evenly false
+
+      (label
+        :class "icon" :halign "start" :hexpand true
+        :text {weather[0].icon})
+
+      (label
+        :class "text" :halign "end"
         :wrap true :wrap-mode "word" :justify "center" :limit-width 6 :lines 3
-        :text "${weather[0].current.temp}󰔄 ${weather[0].current.wind}km/h ${weather[0].current.precipMM}mm")
+        :text "${weather[0].temp}󰔄 ${weather[0].wind}km/h ${weather[0].precipMM}mm")
     )
-    (box :class "bottom-box" :orientation "v" :space-evenly false
-      (box :class "title" :width 552 :height 40 :space-evenly false
-        (button :width 69
-          :onclick `${EWW_CMD} update stack_transition="slideright" && ${stack_selected > 0 ? "${EWW_CMD} update stack_selected=${stack_selected - 1}" : ""}`
+
+    (box
+      :class "bottom-box"
+      :orientation "v" :space-evenly false
+
+      (box
+        :class "title" :width 552 :height 40
+        :space-evenly false
+
+        (button
+          :width 69
+          :onclick `${EWW_CMD} update stack_transition="slideright" &&
+                    ${stack_selected > 0 ? "${EWW_CMD} update stack_selected=${stack_selected - 1}" : ""}`
           "󰁒")
-        (label  :width 414 :text "${weather[stack_selected].date}")
-        (button :width 69
-          :onclick `${EWW_CMD} update stack_transition="slideleft" && ${stack_selected < 2 ? "${EWW_CMD} update stack_selected=${stack_selected + 1}" : ""}`
+
+        (label
+          :width 414 
+          :text "${weather[stack_selected + 1 ].date}")
+
+        (button
+          :width 69
+          :onclick `${EWW_CMD} update stack_transition="slideleft" &&
+                    ${stack_selected < 2 ? "${EWW_CMD} update stack_selected=${stack_selected + 1}" : ""}`
           "󰁙")
       )
-      (stack :selected "${stack_selected}" :transition "${stack_transition}"
-        (box :space-evenly false :class "stack-box"
-          (box :hexpand true
-            :orientation "v" :space-evenly false
-            (label :class "time" :height 36
-              :text "From-To")
-            (label :class "value" :height 100
-              :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
-          )
-          (for data in {weather[0].data}
-            (box :orientation "v" :class "item-box" :space-evenly false
-              (label :class "time" :height 36 :text {data.name}
-              )
-              (label :class "value" :width 54 :height 100
-                :limit-width 3 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "${data.temp} ${data.wind} ${data.precipMM}" )
-            )
-          )
-        )
-        (box :space-evenly false :class "stack-box"
-          (box :hexpand true
-            :orientation "v" :space-evenly false
-            (label :class "time" :height 36
-              :text "From-To")
-            (label :class "time" :height 100
-              :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
-          )
-          (for data in {weather[1].data}
-            (box :orientation "v" :class "item-box"  :space-evenly false
-              (label :class "time" :height 36                :text {data.name}
-              )
-              (label :class "value" :width 54 :height 100
-                :limit-width 3 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "${data.temp} ${data.wind} ${data.precipMM}" )
-            )
-          )
-        )
-        (box :space-evenly false :class "stack-box"
-          (box :hexpand true
-            :orientation "v" :space-evenly false
-            (label :class "time" :height 36
-              :text "From-To")
-            (label :class "time" :height 100
-              :limit-width 10 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "Temp(󰔄) Wind(km/h) Rain(mm)")
-          )
-          (for data in {weather[2].data}
-            (box :orientation "v" :class "item-box" :space-evenly false
-              (label :class "time" :height 36
-                :text {data.name}
-              )
-              (label :class "value" :width 54 :height 100
-                :limit-width 3 :lines 3 :wrap true :wrap-mode "word" :justify "center" :text "${data.temp} ${data.wind} ${data.precipMM}" )
-            )
-          )
-        )
+
+      (stack
+        :selected "${stack_selected}" :transition "${stack_transition}"
+
+        (weather-stack :id 1)
+        (weather-stack :id 2)
+        (weather-stack :id 3)
       )
     )
   )
 )
 
+(defwidget weather-stack[id]
+  (box
+    :class "stack-box"
+    :space-evenly false
+
+    (box
+      :hexpand true
+      :orientation "v" :space-evenly false
+
+      (label
+        :class "time"
+        :height 36
+        :text "From-To")
+
+      (label
+        :class "title"
+        :height 100
+        :limit-width 10 :wrap true :justify "center" :wrap-mode "word" :lines 3
+        :text "Temp(󰔄) Wind(km/h) Rain(mm)")
+    )
+
+    (for data in {weather[id].data}
+      (box
+        :class "item-box"
+        :orientation "v" :space-evenly false
+
+        (label
+          :class "time" :height 36 
+          :text {data.name})
+
+        (label
+          :class "value" :width 54 :height 100
+          :limit-width 3 :wrap true :justify "center" :wrap-mode "word" :lines 3
+          :text "${data.temp} ${data.wind} ${data.precipMM}" )
+      )
+    )
+  )
+)

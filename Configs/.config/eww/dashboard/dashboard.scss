@@ -60,7 +60,14 @@
         border-width: 2px;
         border-color: #cad3f5;
       }
+
+      .title {
+        border-style: solid none none none;
+        border-width: 2px;
+        border-color: #cad3f5;
+      }
       .value {
+        padding: 0 10px;
         border-style: solid none none none;
         border-width: 2px;
         border-color: #cad3f5;
