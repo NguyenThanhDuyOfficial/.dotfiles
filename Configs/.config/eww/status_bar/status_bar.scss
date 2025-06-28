@@ -21,6 +21,20 @@
     opacity: 0.2;
   }
 }
+.arch_icon, .arch_icon_active{
+  padding: 4px 0px 4px 8px;
+  border-radius: 8px;
+  label {
+    font-size: 20px;
+  }
+
+}
+.arch_icon_active {
+  background-color: #363a4f;
+}
+.arch_icon:hover {
+  background-color: #363a4f;
+}
 
 .clock_label {
   font-weight: bold;

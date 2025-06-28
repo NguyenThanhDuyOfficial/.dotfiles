@@ -93,7 +93,6 @@ def fetch_weather():
 
     result = [current_data] + forecast_data
     json_string = json.dumps(result)
-    print(json.dumps(result))
     subprocess.run(["eww", "update", f"weather={json_string}"])
 
 if __name__ == "__main__":

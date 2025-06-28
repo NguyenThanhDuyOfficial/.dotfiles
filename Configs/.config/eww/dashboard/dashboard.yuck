@@ -14,7 +14,7 @@
 
 (defwidget dashboard[]
   (box
-    :orientation "v" :space-evenly false
+    :orientation "v" :space-evenly false :spacing 20
 
     (box :spacing 20 :space-evenly false
       :valign "start" :halign "start" :height 350
@@ -22,10 +22,10 @@
       (profile)
       (weather)
 
-      (box :hexpand true)
+      (box :width 184 :hexpand true :style "background-color: #24273a;")
     )
 
-    (box :vexpand true)
+    (box :vexpand true :style "background-color: #24273a;")
   )
 )
 
