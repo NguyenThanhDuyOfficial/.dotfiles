@@ -21,8 +21,7 @@
 
       (profile)
       (weather)
-
-      (box :width 184 :hexpand true :style "background-color: #24273a;")
+      (todolist)
     )
 
     (box :vexpand true :style "background-color: #24273a;")
@@ -31,7 +30,7 @@
 
 (defwidget profile[]
   (box
-    :class "profile" :width 248 :height 352
+    :class "profile" :width 216 :height 352
 
     (box
       :spacing 20 :orientation "v" :space-evenly false
@@ -39,11 +38,11 @@
 
       (label
         :class "face" :halign "center" :width 150 :height 150 
-        :style "background-image: url('file:///home/Dust/.face.icon');")
+        :style "background-image: url('file:///home/Ken/.face.icon');")
 
       (button
         :class "name" :halign "center" 
-        "Dust")
+        "Ken")
       (button
         :class "username" :halign "center"
         "@NguyenThanhDuyOfficial")
@@ -190,6 +189,71 @@
           :class "value" :width 54 :height 100
           :limit-width 3 :wrap true :justify "center" :wrap-mode "word" :lines 3
           :text "${data.temp} ${data.wind} ${data.precipMM}" )
+      )
+    )
+  )
+)
+
+(defvar todolist '[
+  { 
+    "task": "Code Statusbar",
+    "check": false
+  },
+
+  { 
+    "task": "Code Statusbar",
+    "check": false
+  },
+
+  { 
+    "task": "Code Statusbar",
+    "check": true
+  },
+  { 
+    "task": "Code Statusbar",
+    "check": false
+  },
+  { 
+    "task": "Code Statusbar",
+    "check": false
+  },
+  { 
+    "task": "Code Statusbar",
+    "check": false
+  },
+  { 
+    "task": "Code Statusbar",
+    "check": false
+  }
+]')
+
+(defwidget todolist[]
+  (box
+    :class "todolist" :width 216
+    :orientation "v" :space-evenly false
+    
+    (label :text "todolist" :height 28)
+
+    (scroll 
+      :class "scroll"
+      :hscroll false :height 300
+
+      (box :orientation "v" :space-evenly false
+        (for task in {todolist}
+          (box
+            :class "item" :height 19
+            :space-evenly false :spacing 16
+            
+            (button
+              :class "button"
+              { task.check ? "" : ""})
+
+            (label
+              :class "label"
+              :limit-width 16 :wrap true :wrap-mode "world" :justify "left" :lines 2
+              :text "${task.task}")
+          )
+        )
       )
     )
   )

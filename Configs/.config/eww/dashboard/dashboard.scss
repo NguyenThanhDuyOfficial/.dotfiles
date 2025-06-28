@@ -1,10 +1,12 @@
 .Dashboard {
   font-family: "CaskaydiaMono Nerd Font";
 }
+
 .profile {
   border-radius: 20px;
   background-color: #24273a;
   color: #cad3f5;
+
   .face {
     border-width: 3px;
     border-color: #6e738d;
@@ -14,41 +16,48 @@
     background-size: 150px;
     background-position: center;
   }
+
   .name {
     font-size: 20px;
     font-weight: bold;
   }
+
   .username {
     font-size: 12px;
   }
 }
+
 .weather {
   font-size: 16px;
   font-weight: bold;
   border-radius: 20px;
   background-color: #24273a;
   color: #cad3f5;
+
   .top-box {
     padding: 0 50px;
+
     .icon {
       font-size: 80px;
     }
+
     .text {
       font-size: 20px;     
     }
   }
 
-
   .bottom-box {
-    
+
     .title {
       border-width: 2px;
       border-color: #cad3f5;
       border-style: solid solid none solid;
+
       button:hover {
         background-color: #363a4f;
       }
     }
+
     .stack-box {
       border-style: solid;
       border-width: 2px;
@@ -66,14 +75,34 @@
         border-width: 2px;
         border-color: #cad3f5;
       }
+
       .value {
         padding: 0 10px;
         border-style: solid none none none;
         border-width: 2px;
         border-color: #cad3f5;
+        font-weight: normal;
       }
     }
   }
 }
 
+.todolist {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 20px;
+  background-color: #24273a;
+  color: #cad3f5;
 
+  .item {
+    
+    .button {
+        font-size: 32px;
+    }
+
+    .label {
+    }
+
+  }
+
+}
