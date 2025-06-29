@@ -1,5 +1,5 @@
 .Dashboard {
-  font-family: "CaskaydiaMono Nerd Font";
+  font-family: "CaskaydiaMono Nerd Font Mono";
 }
 
 .profile {
@@ -106,3 +106,66 @@
   }
 
 }
+
+.box {
+  padding: 16px;
+  background-color: #24273a;
+  border-radius: 16px;
+}
+.template {
+    font-size: 24px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: #cad3f5;
+  
+  .work {
+
+    border-radius: 8px;
+    background-color: #363a4f;
+    label {
+      font-size: 30px;
+      font-weight: 900;
+    }
+  }
+  .work:hover {
+    background-color: #6e738d;
+  }
+}
+
+.music {
+  color: #cad3f5;
+
+  .image {
+    border-radius: 8px;
+    background-size: cover;
+  }
+
+  .label {
+    padding-top: 4px;
+    font-size: 14px;
+    font-weight:bold;
+
+  }
+  .label tooltip {
+    background-color: black;
+  }
+
+  .box-buttons {
+    button {
+      font-size: 28px;
+      border-radius: 8px;
+    }
+    button:hover {
+      background-color: #6e738d;
+    }
+    .status {
+    }
+  }
+}
+
+.quote {
+  background-color: #24273a;
+  border-radius: 16px;
+}
+
+

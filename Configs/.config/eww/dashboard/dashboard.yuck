@@ -4,7 +4,7 @@
     :x "0"
     :y "0"
     :width "1024px"
-    :height "512px"
+    :height "524px"
     :anchor "center")
   :stacking "fg"
   :exclusive false
@@ -13,32 +13,39 @@
 )
 
 (defwidget dashboard[]
-  (box
-    :orientation "v" :space-evenly false :spacing 20
-
-    (box :spacing 20 :space-evenly false
-      :valign "start" :halign "start" :height 350
-
-      (profile)
-      (weather)
-      (todolist)
+  (box :space-evenly false :spacing 16
+    (box :orientation "v" :space-evenly false :spacing 16
+      (box :space-evenly false  :height 288 :spacing 16 
+        (profile)
+        (weather)
+        )
+      (box :height 220 :space-evenly false :spacing 16
+        (box :class "box" :height 220 :space-evenly false :spacing 16
+          (template)
+          (music)
+        )
+        (box :class "box" :width 478 :space-evenly false
+          (quote)
+        )
+      ) 
     )
-
-    (box :vexpand true :style "background-color: #24273a;")
+    (box :space-evenly false :space-evenly false :orientation "v" :spacing 16
+      (todolist)
+      (system_buttons)
+    )
   )
 )
-
 (defwidget profile[]
   (box
-    :class "profile" :width 216 :height 352
+    :class "profile" :width 216
 
     (box
       :spacing 20 :orientation "v" :space-evenly false
       :valign "center" :halign "center"
 
       (label
-        :class "face" :halign "center" :width 150 :height 150 
-        :style "background-image: url('file:///home/Ken/.face.icon');")
+        :class "face" :halign "center" :width 100 :height 100
+        :style "background-image: url('file:///home/Ken/.face.icon'); background-size: cover;")
 
       (button
         :class "name" :halign "center" 
@@ -102,11 +109,11 @@
 
 (defwidget weather[]
   (box
-    :class "weather" :width 552 :height 352
+    :class "weather" :width 552 :height 252
     :orientation "v" :space-evenly false
 
     (box
-      :class "top-box" :height 176
+      :class "top-box"
       :space-evenly false
 
       (label
@@ -124,7 +131,7 @@
       :orientation "v" :space-evenly false
 
       (box
-        :class "title" :width 552 :height 40
+        :class "title" :width 552
         :space-evenly false
 
         (button
@@ -229,7 +236,7 @@
 
 (defwidget todolist[]
   (box
-    :class "todolist" :width 216
+    :class "todolist" :width 220
     :orientation "v" :space-evenly false
     
     (label :text "todolist" :height 28)
@@ -256,5 +263,116 @@
         )
       )
     )
+  )
+)
+
+(defwidget template[]
+  (box :space-evenly false
+    (box
+      :class "template" :space-evenly false :orientation "v" :spacing 8
+    
+      (button
+        :class "work" :width 32 :height 90
+        (label :angle -90
+        :text "")
+      )
+      (button
+        :class "work" :width 32 :height 90
+        (label :angle -90
+        :text "")
+      )
+    )
+  )
+)
+
+(defwidget quote[]
+  (box
+    :class "quote"  :space-evenly true
+
+    (label :halign "fill"
+      :justify "left"
+      :text "This is text")
+
+
+  )
+)
+
+(deflisten music :initial '{
+  "title": "",
+  "artUrl": ""
+}'
+`/home/Ken/.config/eww/scripts/update-music.sh`)
+
+(defwidget music[]
+  (box
+    :class "music"
+    :orientation "v" :space-evenly false :spacing 8
+
+    (box
+      :class "image"
+      :height 118
+      :width 210
+      :style 'background-image: url("${music.artUrl}");')
+
+    (label
+      :class "label"
+      :truncate true :limit-width 16 :show-truncated true
+      :text "${music.title}")
+
+    (box 
+      :class "box-buttons"
+      :spacing 8
+      
+      (button "")
+      (button 
+        :class "status"
+        "")
+      (button "")
+    )
+  )
+)
+
+(defwidget system_buttons[]
+  (box
+      (box
+        :class "template" :space-evenly false :orientation "v" :spacing 10
+            (button :valign "start"
+          :class "work" :width 60 :height 60
+          "󰐥"
+        )
+
+        (button :valign "start"
+          :class "work" :width 60 :height 60
+          "󰒲"
+        )  
+      )
+      (box
+        :class "template" :space-evenly false :orientation "v" :spacing 10
+          (button :valign "start"
+          :class "work" :width 60 :height 60
+          ""
+        )
+
+        (button :valign "start"
+          :class "work" :width 60 :height 60
+          ""
+        )  
+      )     
+  )
+)
+
+(defwidget stats[]
+  (box
+    :class "stats"
+    :orientation "v" :space-evenly false
+
+    (label 
+      :text "Last Update: 300 Days Ago.")
+
+    (label
+      :text "Work Streak: 100 Days")
+
+    (label
+      :text "Work: 100 hrs/week")
   )
 )
