@@ -69,6 +69,7 @@ def fetch_weather():
     current = data["current_condition"][0]
     current_data = {
         "icon": map_icon(current["weatherCode"]),
+        "code": str(current["weatherDesc"][0]["value"]),
         "temp": int(current["temp_C"]),
         "wind": int(current["windspeedKmph"]),
         "precipMM": float(current["precipMM"]),
@@ -78,10 +79,9 @@ def fetch_weather():
     for day in data["weather"][:3]:
         date_str = datetime.strptime(day["date"], "%Y-%m-%d").strftime("%-d/%-m")
         hourly_data = []
-        for i, hour in enumerate(day["hourly"]):
-            name = f"{i*3}-{(i+1)*3}"
+        for hour in day["hourly"]:
             hourly_data.append({
-                "name": name,
+                "icon": map_icon(hour["weatherCode"]),
                 "temp": int(hour["tempC"]),
                 "wind": int(hour["windspeedKmph"]),
                 "precipMM": float(hour["precipMM"]),
@@ -96,48 +96,4 @@ def fetch_weather():
     subprocess.run(["eww", "update", f"weather={json_string}"])
 
 if __name__ == "__main__":
-    weather_data = [
-        {
-        "current": {"icon": "󰖨", "temp": 27, "wind": 11, "precipMM": 0.0},
-        },
-        {
-            "date": "16/6",
-            "data": [
-                {"name": "0-3", "temp": 19, "wind": 10, "precipMM": 0.0},
-                {"name": "3-6", "temp": 18, "wind": 7, "precipMM": 0.0},
-                {"name": "6-9", "temp": 16, "wind": 6, "precipMM": 0.0},
-                {"name": "9-12", "temp": 20, "wind": 9, "precipMM": 0.0},
-                {"name": "12-15", "temp": 26, "wind": 10, "precipMM": 0.0},
-                {"name": "15-18", "temp": 30, "wind": 10, "precipMM": 0.0},
-                {"name": "18-21", "temp": 28, "wind": 11, "precipMM": 0.0},
-                {"name": "21-24", "temp": 24, "wind": 10, "precipMM": 0.0}
-            ]
-        },
-        {
-            "date": "17/6",
-            "data": [
-                {"name": "0-3", "temp": 20, "wind": 8, "precipMM": 0.0},
-                {"name": "3-6", "temp": 20, "wind": 3, "precipMM": 0.0},
-                {"name": "6-9", "temp": 19, "wind": 6, "precipMM": 0.0},
-                {"name": "9-12", "temp": 24, "wind": 14, "precipMM": 0.0},
-                {"name": "12-15", "temp": 28, "wind": 17, "precipMM": 0.0},
-                {"name": "15-18", "temp": 31, "wind": 19, "precipMM": 0.0},
-                {"name": "18-21", "temp": 30, "wind": 21, "precipMM": 0.0},
-                {"name": "21-24", "temp": 28, "wind": 10, "precipMM": 0.0}
-            ]
-        },
-        {
-            "date": "18/6",
-            "data": [
-                {"name": "0-3", "temp": 25, "wind": 8, "precipMM": 0.0},
-                {"name": "3-6", "temp": 24, "wind": 9, "precipMM": 1.8},
-                {"name": "6-9", "temp": 23, "wind": 10, "precipMM": 1.8},
-                {"name": "9-12", "temp": 25, "wind": 13, "precipMM": 0.0},
-                {"name": "12-15", "temp": 28, "wind": 16, "precipMM": 0.0},
-                {"name": "15-18", "temp": 30, "wind": 13, "precipMM": 0.0},
-                {"name": "18-21", "temp": 29, "wind": 19, "precipMM": 0.0},
-                {"name": "21-24", "temp": 26, "wind": 24, "precipMM": 0.0}
-            ]
-        }
-    ]
     fetch_weather();

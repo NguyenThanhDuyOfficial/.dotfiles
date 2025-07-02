@@ -12,54 +12,87 @@
   (dashboard)
 )
 
+
 (defwidget dashboard[]
-  (box :space-evenly false :spacing 16
-    (box :orientation "v" :space-evenly false :spacing 16
-      (box :space-evenly false  :height 288 :spacing 16 
+  (box
+    :space-evenly false :spacing 16
+
+    (box
+  
+      :orientation "v" :space-evenly false
+      :spacing 16
+      (box
+        :space-evenly false  :height 288
+        :spacing 16
+
         (profile)
         (weather)
-        )
-      (box :height 220 :space-evenly false :spacing 16
-        (box :class "box" :height 220 :space-evenly false :spacing 16
+      )
+
+      (box
+        :height 220 :space-evenly false
+        :spacing 16
+        
+        (box
+          :class "box" :height 220 :space-evenly false
+          :spacing 16
+
           (template)
           (music)
         )
-        (box :class "box" :width 478 :space-evenly false
+
+        (box
+          :class "box" :width 478 :space-evenly false
+          :orientation "v"
+
           (quote)
+          (stats)
         )
-      ) 
+      )
     )
-    (box :space-evenly false :space-evenly false :orientation "v" :spacing 16
+
+    (box
+      :space-evenly false :space-evenly false :orientation "v"
+      :spacing 16
+
       (todolist)
       (system_buttons)
     )
   )
 )
+
+
 (defwidget profile[]
   (box
     :class "profile" :width 216
 
     (box
-      :spacing 20 :orientation "v" :space-evenly false
+      :spacing 16 :orientation "v" :space-evenly false
       :valign "center" :halign "center"
 
-      (label
-        :class "face" :halign "center" :width 100 :height 100
-        :style "background-image: url('file:///home/Ken/.face.icon'); background-size: cover;")
+      (box
+        :class "face" :halign "center" :width 120 :height 120
+        :style "background-image: url('${user.home_dir}/.avatar');")
 
       (button
-        :class "name" :halign "center" 
-        "Ken")
+        :class "name" :halign "center"
+        "${user.user_name}")
+
       (button
-        :class "username" :halign "center"
-        "@NguyenThanhDuyOfficial")
+        :class "link" :halign "center"
+        "󰊤 Github 󰊤")
     )
   )
 )
 
+
+;; WEATHER ;;
+;;
+
 (defvar weather '[
   {
-    "icon": "󰖨",
+    "icon": "",
+    "code": "Light Sleet Showers",
     "temp": 0,
     "wind": 0,
     "precipMM": 0.0
@@ -67,168 +100,197 @@
   {
     "date": "14/6",
     "data": [
-      { "name": "0-3", "temp": 10, "wind": 1, "precipMM": 0.0 },
-      { "name": "3-6", "temp": 1, "wind": 1, "precipMM": 0.0 },
-      { "name": "6-9", "temp": 1, "wind": 1, "precipMM": 0.0 },
-      { "name": "9-12", "temp": 1, "wind": 1, "precipMM": 0.0 },
-      { "name": "12-15", "temp": 1, "wind": 1, "precipMM": 0.0 },
-      { "name": "15-18", "temp": 1, "wind": 1, "precipMM": 0.0 },
-      { "name": "18-21", "temp": 1, "wind": 1, "precipMM": 0.0 },
-      { "name": "21-24", "temp": 1, "wind": 1, "precipMM": 0.0 }
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 },
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 },
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 },
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 },
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 },
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 },
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 },
+      { "icon": "", "temp": 10, "wind": 10, "precipMM": 0.0 }
     ]
   },
   {
     "date": "15/6",
     "data": [
-      { "name": "0-3", "temp": 10, "wind": 2, "precipMM": 0.0 },
-      { "name": "3-6", "temp": 2, "wind": 2, "precipMM": 0.0 },
-      { "name": "6-9", "temp": 2, "wind": 2, "precipMM": 0.0 },
-      { "name": "9-12", "temp": 2, "wind": 2, "precipMM": 0.0 },
-      { "name": "12-15", "temp": 2, "wind": 2, "precipMM": 0.0 },
-      { "name": "15-18", "temp": 2, "wind": 2, "precipMM": 0.0 },
-      { "name": "18-21", "temp": 2, "wind": 2, "precipMM": 0.0 },
-      { "name": "21-24", "temp": 2, "wind": 2, "precipMM": 0.0 }
+      { "icon": "", "temp": 10, "wind": 20, "precipMM": 0.0 },
+      { "icon": "", "temp": 20, "wind": 20, "precipMM": 0.0 },
+      { "icon": "", "temp": 20, "wind": 20, "precipMM": 0.0 },
+      { "icon": "", "temp": 20, "wind": 20, "precipMM": 0.0 },
+      { "icon": "", "temp": 20, "wind": 20, "precipMM": 0.0 },
+      { "icon": "", "temp": 20, "wind": 20, "precipMM": 0.0 },
+      { "icon": "", "temp": 20, "wind": 20, "precipMM": 0.0 },
+      { "icon": "", "temp": 20, "wind": 20, "precipMM": 0.0 }
     ]
   },
   {
     "date": "16/6",
     "data": [
-      { "name": "0-3", "temp": 3, "wind": 3, "precipMM": 0.0 },
-      { "name": "3-6", "temp": 3, "wind": 3, "precipMM": 0.0 },
-      { "name": "6-9", "temp": 3, "wind": 3, "precipMM": 0.0 },
-      { "name": "9-12", "temp": 3, "wind": 3, "precipMM": 0.0 },
-      { "name": "12-15", "temp": 3, "wind": 3, "precipMM": 0.0 },
-      { "name": "15-18", "temp": 3, "wind": 3, "precipMM": 0.0 },
-      { "name": "18-21", "temp": 3, "wind": 3, "precipMM": 0.0 },
-      { "name": "21-24", "temp": 3, "wind": 3, "precipMM": 0.0 }
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 },
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 },
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 },
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 },
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 },
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 },
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 },
+      { "icon": "", "temp": 30, "wind": 30, "precipMM": 0.0 }
     ]
   }
 ]')
+
+(defvar weather_time_array '[ "00", "-", "03", "-", "06", "-", "09", "-", "12", "-", "15", "-", "18", "-", "21", "-", "24"]')
+
 (defvar stack_selected 0)
+
 (defvar stack_transition "slideright")
+
 
 (defwidget weather[]
   (box
-    :class "weather" :width 552 :height 252
+    :class "weather" :hexpand true
     :orientation "v" :space-evenly false
 
     (box
-      :class "top-box"
+      :class "current" :vexpand true
       :space-evenly false
 
       (label
-        :class "icon" :halign "start" :hexpand true
+        :class "icon" :halign "start"
         :text {weather[0].icon})
 
       (label
-        :class "text" :halign "end"
-        :wrap true :wrap-mode "word" :justify "center" :limit-width 6 :lines 3
-        :text "${weather[0].temp}󰔄 ${weather[0].wind}km/h ${weather[0].precipMM}mm")
+        :class "status" :halign "center" :hexpand true
+        :wrap true :limit-width 13 :lines 2 :justify "center"
+        :text {weather[0].code})
+
+      (label
+        :halign "end"
+        :justify "center"
+        :text "${weather[0].temp}󰔄\\n${weather[0].wind} km/h\\n${weather[0].precipMM} mm")
     )
 
     (box
-      :class "bottom-box"
+      :class "detail"
       :orientation "v" :space-evenly false
 
       (box
-        :class "title" :width 552
+        :class "nav_date"
         :space-evenly false
 
         (button
-          :width 69
-          :onclick `${EWW_CMD} update stack_transition="slideright" &&
-                    ${stack_selected > 0 ? "${EWW_CMD} update stack_selected=${stack_selected - 1}" : ""}`
-          "󰁒")
+          :width 52
+          :onclick
+            `${EWW_CMD} update stack_transition="slideright" &&
+            ${stack_selected > 0 ? "${EWW_CMD} update stack_selected=${stack_selected - 1}" : ""}`
+          "")
 
         (label
-          :width 414 
+          :hexpand true
           :text "${weather[stack_selected + 1 ].date}")
 
         (button
-          :width 69
-          :onclick `${EWW_CMD} update stack_transition="slideleft" &&
-                    ${stack_selected < 2 ? "${EWW_CMD} update stack_selected=${stack_selected + 1}" : ""}`
-          "󰁙")
+          :width 52
+          :onclick
+            `${EWW_CMD} update stack_transition="slideleft" &&
+            ${stack_selected < 2 ? "${EWW_CMD} update stack_selected=${stack_selected + 1}" : ""}`
+          "")
       )
 
       (stack
         :selected "${stack_selected}" :transition "${stack_transition}"
 
-        (weather-stack :id 1)
-        (weather-stack :id 2)
-        (weather-stack :id 3)
+        (weather_stack :id 1)
+        (weather_stack :id 2)
+        (weather_stack :id 3)
       )
     )
   )
 )
 
-(defwidget weather-stack[id]
+
+(defwidget weather_stack[id]
   (box
-    :class "stack-box"
+    :class "weather_stack"
     :space-evenly false
 
     (box
-      :hexpand true
-      :orientation "v" :space-evenly false
+      :orientation "v" :space-evenly false :spacing 21
 
       (label
-        :class "time"
-        :height 36
-        :text "From-To")
+        :class "header"
+        :text "Hour")
 
       (label
-        :class "title"
-        :height 100
-        :limit-width 10 :wrap true :justify "center" :wrap-mode "word" :lines 3
-        :text "Temp(󰔄) Wind(km/h) Rain(mm)")
+        :valign "end"
+        :justify "center"
+        :text "󰔄\\nkm/h\\nmm")
     )
+    
+    (box
+      :hexpand true
+      :space-evenly false :orientation "v"
 
-    (for data in {weather[id].data}
       (box
-        :class "item-box"
-        :orientation "v" :space-evenly false
+        :class "time" :halign "end"
+        :space-evenly false :spacing 16;
 
-        (label
-          :class "time" :height 36 
-          :text {data.name})
+        (for time in weather_time_array
+          (label
+            :halign "end"
+            :text {time})
+        )
+      )
 
-        (label
-          :class "value" :width 54 :height 100
-          :limit-width 3 :wrap true :justify "center" :wrap-mode "word" :lines 3
-          :text "${data.temp} ${data.wind} ${data.precipMM}" )
+      (box
+        :class "data" :space-evenly false :halign "end"
+
+        (for data in {weather[id].data}
+          (box
+            :class "item" :spacing 8
+            :orientation "v" :space-evenly false
+
+            (label
+              :class "icon"
+              :text {data.icon})
+
+            (label
+              :class "value"
+              :justify "center"
+              :text "${data.temp}\\n${data.wind}\\n${data.precipMM}")
+          )
+        )
       )
     )
   )
 )
 
 (defvar todolist '[
-  { 
+  {
     "task": "Code Statusbar",
     "check": false
   },
 
-  { 
+  {
     "task": "Code Statusbar",
     "check": false
   },
-
-  { 
+  {
     "task": "Code Statusbar",
     "check": true
   },
-  { 
+  {
     "task": "Code Statusbar",
     "check": false
   },
-  { 
+  {
     "task": "Code Statusbar",
     "check": false
   },
-  { 
+  {
     "task": "Code Statusbar",
     "check": false
   },
-  { 
+  {
     "task": "Code Statusbar",
     "check": false
   }
@@ -287,11 +349,18 @@
 
 (defwidget quote[]
   (box
-    :class "quote"  :space-evenly true
+    :class "quote"  :space-evenly false :vexpand true :orientation "v" :valign "center"
 
-    (label :halign "fill"
-      :justify "left"
-      :text "This is text")
+    (label
+      :justify "center"
+      :text "All life is temporary")
+    (label
+      :justify "center"
+      :text "Why worry about anything that's only temporary")
+
+    (label
+      :justify "center"
+      :text "-- Gautama Buddha --")
 
 
   )
@@ -363,16 +432,31 @@
 
 (defwidget stats[]
   (box
-    :class "stats"
-    :orientation "v" :space-evenly false
+    :class "stats" :valign "end" :width 478
+    :space-evenly true :spacinng 8
 
-    (label 
-      :text "Last Update: 300 Days Ago.")
-
-    (label
-      :text "Work Streak: 100 Days")
+    (box :orientation "v" :space-evenly false
 
     (label
+      :xalign 0
+      :text "Today Task: 1 tasks")
+    (label
+      :xalign 0
+      :text "Today Work: 8 hours"))
+    (box :orientation "v" :space-evenly false
+    (label
+      :xalign 0.5
       :text "Work: 100 hrs/week")
+    (label
+      :xalign 0.5
+      :text "Work Streak: 100 days"))
+
+    (box :orientation "v" :space-evenly false
+    (label
+      :xalign 1
+      :text "Completed: 10 tasks")
+    (label
+      :xalign 1
+      :text "Last Update: 300 days"))
   )
 )

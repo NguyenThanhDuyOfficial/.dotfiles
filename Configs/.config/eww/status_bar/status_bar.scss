@@ -1,78 +1,87 @@
-
 .StatusBar {
   padding: 0 5px;
   background-color: #24273a;
-  font-family: "CaskaydiaMono Nerd Font Mono";
   color: #cad3f5;
+  font-family: "CaskaydiaMono Nerd Font Mono";
+  font-size: 16px;
 }
 
 .top {
-  padding-top: 10px;
+  padding-top: 12px;
 }
-.workspaces {
-  font-size: 16px;
-  .active {
-      font-weight: 900;
+
+.dashboard_button {
+  font-size: 24px;
+
+  .active, .inactive:hover {
+    border-radius: 8px;
+    background-color: #363a4f;
   }
+}
+
+.workspaces {
+
+  .active {
+    font-weight: 900;
+  }
+
   .inactive {
     opacity: 0.2;
   }
 }
-.arch_icon, .arch_icon_active{
-  padding: 4px 0px 4px 8px;
-  border-radius: 8px;
-  label {
-    font-size: 20px;
+
+.clock {
+
+  .label {
+    font-weight: bold;
   }
-
-}
-.arch_icon_active {
-  background-color: #363a4f;
-}
-.arch_icon:hover {
-  background-color: #363a4f;
-}
-
-.clock_label {
-  font-weight: bold;
-  font-size: 16px;
 }
 
 .bottom {
   padding-bottom: 10px;
 }
+
 .brightness {
+
   scale trough highlight {
     background-color: #8aadf4;
   }
+
   .label {
     font-weight: bold;
+  }
+
+  .button {
+    padding: 4px 0;
     font-size: 16px;
   }
-  button {
-    font-size: 18px;
-  }
 }
+
 .volume {
   scale trough highlight {
     background-color: #c6a0f6;
   }
+
   .label {
     font-weight: bold;
-    font-size: 16px;
   }
-  button {
+
+  .button {
+    padding: 4px 0;
+    font-size: 24px;
   }
 }
 
 scale {
   all: unset;
-  padding: 5px 0;
+  padding: 4px 0;
+
   trough{
     min-height: 80px;
     min-width: 10px; 
     border-radius: 10px;
     background-color: #494d64;
+
     highlight {
       border-radius: 10px;
     }

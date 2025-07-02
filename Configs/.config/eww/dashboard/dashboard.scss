@@ -1,87 +1,112 @@
 .Dashboard {
-  font-family: "CaskaydiaMono Nerd Font Mono";
+  font-family: "CaskaydiaMono Nerd Font";
+  color: #cad3f5;
 }
 
 .profile {
+  background-color: #24273a;
+  border-radius: 20px;
+
+  .face {
+    border-width: 2px;
+    border-color: #8aadf4;
+    border-style: solid;
+    border-radius: 50%;
+    background-size: cover;}
+
+  .name {
+    padding-top: 12px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ee99a0;}
+
+  .link {
+    padding: 4px 8px;
+    font-size: 16px;
+    color: #cad3f5;}
+
+  .link:hover {
+    border-radius: 4px;
+    background-color: #363a4f;}
+}
+
+
+.weather {
   border-radius: 20px;
   background-color: #24273a;
   color: #cad3f5;
+  font-size: 16px;
 
-  .face {
-    border-width: 3px;
-    border-color: #6e738d;
-    border-style: solid;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-size: 150px;
-    background-position: center;
-  }
-
-  .name {
-    font-size: 20px;
+  .current {
+    padding: 0 72px;
     font-weight: bold;
+
+    .icon {
+      font-family: "CaskaydiaCove Nerd Font";
+      font-size: 80px;
+      color: #8aadf4;}
+
+    .stats {
+      font-size: 20px;}
+
   }
 
-  .username {
-    font-size: 12px;
+  .detail {
+    margin: 0 8px 8px 8px;
+    border-width: 2px;
+    border-color: #cad3f5;
+    border-style: solid;
+    border-radius: 8px;
+
+    .nav_date {
+      padding: 0 16px;
+      border-width: 0 0 2px 0;
+      border-color: #cad3f5;
+      border-style: solid;
+
+      button {
+        margin: 4px;
+        background-color: #363a4f;
+        border-radius: 8px;
+
+        label {
+          font-size: 16px;
+        }
+      }
+
+      button:hover {
+        background-color: #b7bdf8;
+        color: #363a4f;
+      }
+    }
   }
 }
 
-.weather {
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 20px;
-  background-color: #24273a;
-  color: #cad3f5;
+.weather_stack {
+  padding: 8px 12px;
 
-  .top-box {
-    padding: 0 50px;
-
-    .icon {
-      font-size: 80px;
-    }
-
-    .text {
-      font-size: 20px;     
-    }
+  .header {
+    padding-bottom: 16px;
+    border-width: 0 0 2px 0;
+    border-color: #cad3f5;
+    border-style: solid;
   }
 
-  .bottom-box {
+  .data {
+    margin-right: 7px;
+    border-width: 0 2px 0 0;
+    border-color: #cad3f5;
+    border-style: solid;
 
-    .title {
-      border-width: 2px;
+    .item {
+      padding: 0 15px;
+      border-width: 0 0 0 2px;
       border-color: #cad3f5;
-      border-style: solid solid none solid;
-
-      button:hover {
-        background-color: #363a4f;
-      }
-    }
-
-    .stack-box {
       border-style: solid;
-      border-width: 2px;
-      border-color: #cad3f5;
-      border-radius: 0 0 20px 20px;
-      
-      .item-box {
-        border-style: none none none solid;
-        border-width: 2px;
-        border-color: #cad3f5;
-      }
 
-      .title {
-        border-style: solid none none none;
-        border-width: 2px;
-        border-color: #cad3f5;
-      }
-
-      .value {
-        padding: 0 10px;
-        border-style: solid none none none;
-        border-width: 2px;
-        border-color: #cad3f5;
-        font-weight: normal;
+      .icon {
+        font-family: "CaskaydiaCove Nerd Font";
+        font-size: 24px;
       }
     }
   }
@@ -166,6 +191,14 @@
 .quote {
   background-color: #24273a;
   border-radius: 16px;
+
+  color: #cad3f5;
 }
 
+.stats {
 
+  color: #cad3f5;
+  label {
+    font-size: 12px;
+  }
+}

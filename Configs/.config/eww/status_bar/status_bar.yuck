@@ -1,6 +1,6 @@
 (defwindow StatusBar
   :monitor 0
-  :geometry (geometry 
+  :geometry (geometry
     :x "0px"
     :y "0px"
     :width "40px"
@@ -26,62 +26,79 @@
 (defwidget top[]
   (box
     :class "top" :valign "start"
-    :spacing 10 :orientation "v" :space-evenly false
+    :spacing 8 :orientation "v" :space-evenly false
 
     (dashboard_button)
     (workspaces)
   )
 )
 
-(defvar workspaces "[1,0,0,0,0,0]")
+
+;; WORKSPACES ;;
+;; This widget displays workspace buttons with dynamic styling based on their active state.
+;;
+;; - The script `eww/scripts/update-workspaces.sh` updates the variable `workspaces`.
+;; - `workspaces` is a JSON-style array of 0s and 1s:
+;;     - 1 = Active workspace
+;;     - 0 = Inactive workspace
+;;
+;; Each button corresponds to a workspace and is styled with either the "active" or "inactive"
+;; CSS class depending on its state.
+
+(defvar workspace_array "[1,0,0,0,0,0]")
 
 (defwidget workspaces[]
   (box
-    :class "workspaces" :halign "center" 
-    :spacing 3 :orientation "v"
+    :class "workspaces"
+    :spacing 4 :orientation "v"
 
-    (button :class {workspaces[0] == 0 ? "inactive" : "active"} "w")
-    (button :class {workspaces[1] == 0 ? "inactive" : "active"} "i")
-    (button :class {workspaces[2] == 0 ? "inactive" : "active"} "s")
-    (button :class {workspaces[3] == 0 ? "inactive" : "active"} "d")
-    (button :class {workspaces[4] == 0 ? "inactive" : "active"} "o")
-    (button :class {workspaces[5] == 0 ? "inactive" : "active"} "m")
+    (button :class {workspace_array[0] == 0 ? "inactive" : "active"} "w")
+    (button :class {workspace_array[1] == 0 ? "inactive" : "active"} "i")
+    (button :class {workspace_array[2] == 0 ? "inactive" : "active"} "s")
+    (button :class {workspace_array[3] == 0 ? "inactive" : "active"} "d")
+    (button :class {workspace_array[4] == 0 ? "inactive" : "active"} "o")
+    (button :class {workspace_array[5] == 0 ? "inactive" : "active"} "m")
   )
 )
 
-(defvar is_dasboard_active false)
+
+;; DASHBOARD;;
+;; This widget controls the visibility of the dashboard window.
+
+(defvar is_dashboard_active false)
+
 (defwidget dashboard_button[]
   (box
+    :class "dashboard_button"
+
     (button
-      :class {is_dasboard_active ? "arch_icon_active" : "arch_icon"}
+      :class {is_dashboard_active ? "active" : "inactive"}
       :onclick
         {
-          is_dasboard_active ?
-          "${EWW_CMD} update is_dasboard_active=false &&
-          ${EWW_CMD} close Dashboard"
+          is_dashboard_active ?
+          "${EWW_CMD} update is_dashboard_active=false && ${EWW_CMD} close Dashboard"
           :
-          "${EWW_CMD} update is_dasboard_active=true &&
-          ${EWW_CMD} open Dashboard"
+          "${EWW_CMD} update is_dashboard_active=true && ${EWW_CMD} open Dashboard"
         }
-
-      "󰣇 ")
+      "󰣇")
   )
 )
 
 
 (defwidget center[]
-    (box
-      (clock)
-    )
+  (box
+    (clock)
+  )
 )
+
 
 (defwidget clock[]
   (box
-    :valign "center"
+    :class "clock" :valign "center"
     :orientation "v" :space-evenly false
 
     (label
-      :class "clock_label"
+      :class "label"
       :wrap true
       :text {formattime(EWW_TIME, "%H %M")})
   )
@@ -97,6 +114,10 @@
     (volume)
   )
 )
+
+
+;; BRIGHTNESS ;;
+;; This widget displays a vertical brightness control with an interactive slider.
 
 (defvar brightness_value "100")
 (defvar is_brightness_expand false)
@@ -128,11 +149,15 @@
       )
 
       (button
-        :height 30
+        :class "button"
         "󰌵")
     )
   )
 )
+
+
+;; VOLUME ;;
+;; This widget displays a vertical volume control with an interactive slider.
 
 (defvar volume_value "100")
 (defvar is_volume_expand false)
@@ -163,8 +188,8 @@
       )
 
       (button
-        :height 30
-        " ")
+        :class "button"
+        "")
     )
   )
 )
