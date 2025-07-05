@@ -5,4 +5,4 @@ max=$(brightnessctl m)
 
 brightness_value=$((current * 100 / max))
 
-eww update brightness_value=$brightness_value
+eww update brightness-value=$brightness_value

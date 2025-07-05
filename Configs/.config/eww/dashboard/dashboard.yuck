@@ -1,4 +1,4 @@
-(defwindow Dashboard
+(defwindow dashboard
   :monitor 0
   :geometry (geometry 
     :x "0"
@@ -56,7 +56,7 @@
       :spacing 16
 
       (todolist)
-      (system_buttons)
+      (system-control)
     )
   )
 )
@@ -328,43 +328,47 @@
   )
 )
 
+
+;; TEMPLATE ;;
+;; Workspaces template widget displaying two buttons:
+;; - WORK: Opens LibreWolf (work profile) on workspace 1, Neovim on 2, LibreWolf (chill profile) on 4, and Discord on 5.
+;; - GAME: Opens Bottles on 2, LibreWolf (chill profile) on 4, and Discord on 5.
+;;
+;;  NOTE: The exec dispatcher supports adding rules. Please note some windows might work better, some worse.
+;; Tt records the PID of the spawned process and uses that.
+;; For example, if your process forks and then the fork opens a window, this will not work.
+
 (defwidget template[]
-  (box :space-evenly false
     (box
-      :class "template" :space-evenly false :orientation "v" :spacing 8
+      :class "template" :orientation "v" :spacing 8 :width 32
     
       (button
-        :class "work" :width 32 :height 90
-        (label :angle -90
+        :class "button"
+        :onclick `
+          hyprctl dispatch workspace 1
+          hyprctl dispatch exec [workspace 1 silent] "librewolf -P Work"
+          hyprctl dispatch exec [workspace 2 silent] "foot"
+        `
+
+        (label
+        :gravity "east"
         :text "")
       )
       (button
-        :class "work" :width 32 :height 90
-        (label :angle -90
+        :class "button"
+        :onclick `
+          hyprctl dispatch exec "flatpak run com.usebottles.bottles"
+        `
+
+        (label
+        :gravity "east"
         :text "")
       )
     )
-  )
 )
 
-(defwidget quote[]
-  (box
-    :class "quote"  :space-evenly false :vexpand true :orientation "v" :valign "center"
-
-    (label
-      :justify "center"
-      :text "All life is temporary")
-    (label
-      :justify "center"
-      :text "Why worry about anything that's only temporary")
-
-    (label
-      :justify "center"
-      :text "-- Gautama Buddha --")
 
 
-  )
-)
 
 (deflisten music :initial '{
   "title": "",
@@ -392,71 +396,126 @@
       :class "box-buttons"
       :spacing 8
       
-      (button "")
-      (button 
+      (button
+        :onclick "playerctl previous"
+        "")
+
+      (button
+
         :class "status"
+        :onclick "playerctl play-pause"
         "")
-      (button "")
+      (button
+
+        :onclick "playerctl next"
+        "")
     )
   )
 )
 
-(defwidget system_buttons[]
+
+;; QUOTE ;;
+;;
+
+(defwidget quote[]
   (box
-      (box
-        :class "template" :space-evenly false :orientation "v" :spacing 10
-            (button :valign "start"
-          :class "work" :width 60 :height 60
-          "󰐥"
-        )
+    :class "quote"  :space-evenly false :vexpand true :orientation "v" :valign "center" :spacing 8
 
-        (button :valign "start"
-          :class "work" :width 60 :height 60
-          "󰒲"
-        )  
-      )
-      (box
-        :class "template" :space-evenly false :orientation "v" :spacing 10
-          (button :valign "start"
-          :class "work" :width 60 :height 60
-          ""
-        )
+    (label
+      :class "quote-label" :justify "center"
+      :wrap true
+      :text "\"All life is temporary. Why worry about anything that's only temporary.\"")
 
-        (button :valign "start"
-          :class "work" :width 60 :height 60
-          ""
-        )  
-      )     
+    (label
+      :class "author"
+      :justify "end" :xalign 1
+      :text " Gautama Buddha")
   )
 )
+
+
 
 (defwidget stats[]
   (box
     :class "stats" :valign "end" :width 478
-    :space-evenly true :spacinng 8
+    :space-evenly false :spacinng 8
 
-    (box :orientation "v" :space-evenly false
+    (box :orientation "v" :space-evenly false 
 
-    (label
-      :xalign 0
-      :text "Today Task: 1 tasks")
-    (label
-      :xalign 0
-      :text "Today Work: 8 hours"))
-    (box :orientation "v" :space-evenly false
-    (label
-      :xalign 0.5
-      :text "Work: 100 hrs/week")
-    (label
-      :xalign 0.5
-      :text "Work Streak: 100 days"))
+      (label
+        :xalign 1
+        :text "Today: 1 ")
 
-    (box :orientation "v" :space-evenly false
-    (label
-      :xalign 1
-      :text "Completed: 10 tasks")
-    (label
-      :xalign 1
-      :text "Last Update: 300 days"))
+      (label
+        :xalign 1
+        :text "Week: 1 ")
+
+      (label
+        :xalign 1
+        :text "All: 1 ")
+    )
+
+    (box :orientation "v" :space-evenly false :halign "center" :hexpand true
+
+      (label
+        :xalign 1
+        :text "Today: 100 ")
+      (label
+        :xalign 1
+        :text "Week: 100 ")
+      (label
+        :xalign 1
+        :text "All: 87600 ")
+    )
+
+    (box :orientation "v" :space-evenly false :valign "end"
+
+      (label
+        :xalign 1
+        :text "Completed: 10 tasks")
+      (label
+        :xalign 1
+        :text "Last Update: 300 days")
+    )
+  )
+)
+
+
+(defwidget system-control[]
+  (box
+    :class "system-control" :vexpand true :spacing 8
+
+    (box
+      :orientation "v" :spacing 8 :space-evenly false
+
+      (button
+        :class "poweroff" :height 74
+        :onclick "systemctl poweroff"
+        "󰐥"
+      )
+
+      (button
+        :class "sleep" :height 74
+        :onclick "systemctl hibernate"
+        "󰒲"
+      )
+    )
+
+    (box
+      :space-evenly false :orientation "v" :spacing 8
+
+        (button
+        :class "reboot" :height 74 :valign "start"
+        :onclick "systemctl reboot"
+        ""
+      )
+
+      ; TODO
+      (button :valign "start"
+        :class "lock"
+        :height 74
+        ""
+      )
+    )
   )
 )

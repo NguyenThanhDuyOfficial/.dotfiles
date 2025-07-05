@@ -1,4 +1,4 @@
-.StatusBar {
+.status-bar {
   padding: 0 5px;
   background-color: #24273a;
   color: #cad3f5;
@@ -10,7 +10,7 @@
   padding-top: 12px;
 }
 
-.dashboard_button {
+.dashboard-button {
   font-size: 24px;
 
   .active, .inactive:hover {
@@ -32,8 +32,32 @@
 
 .clock {
 
-  .label {
+  button {
     font-weight: bold;
+    padding: 8px 0;
+    border-radius: 8px;
+  }
+
+  button:hover, .active{
+    background-color: #363a4f;
+  }
+}
+
+
+.calendar-box {
+  border-radius: 16px;
+  background-color: #24273a;
+  color: #cad3f5;
+  .calendar {
+    margin-top: 8px;
+    padding: 2px 4px;
+    .view {
+
+  }}
+  .calendar:selected {
+    border-radius: 8px;
+    background-color: #eed49f;
+    color: #181926;
   }
 }
 

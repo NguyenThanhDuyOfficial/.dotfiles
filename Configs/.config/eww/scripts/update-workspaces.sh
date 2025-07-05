@@ -19,7 +19,7 @@ handle() {
       echo "[${workspaces[*]}]"
     )
 
-    eww update workspace_array=$json_array
+    eww update workspace-array=$json_array
     ;;
   esac
 }

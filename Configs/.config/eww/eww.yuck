@@ -3,5 +3,5 @@
   "user_name": "Ken"
 }')
 
-(include "./status_bar/status_bar.yuck")
+(include "./status-bar/status-bar.yuck")
 (include "./dashboard/dashboard.yuck")
