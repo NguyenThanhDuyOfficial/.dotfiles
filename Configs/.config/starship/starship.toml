@@ -1,6 +1,0 @@
-format = """
-  $all
-"""
-
-[character]
-format = '  $symbol '

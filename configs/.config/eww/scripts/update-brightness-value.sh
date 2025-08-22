@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+current=$(brightnessctl g)
+max=$(brightnessctl m)
+
+brightness_value=$((current * 100 / max))
+
+eww update brightness-value=$brightness_value
