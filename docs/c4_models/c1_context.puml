@@ -1,0 +1,17 @@
+@startuml C1_Kaizen_Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+title System Context Diagram for Jing
+
+Person(user,"User","Who interact with Jing")
+
+System(jing, "Jing", "A peaceful environment where users can work with ease")
+
+System_Ext(linux, "Linux Kernel", "The operating system")
+
+Rel(user, jing, "Uses" )
+Rel(jing, linux, "Send signal")
+
+@enduml

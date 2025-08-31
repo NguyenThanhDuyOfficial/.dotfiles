@@ -1,0 +1,44 @@
+@startuml C3_Kaizen_Component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Component Diagram for Jing
+
+Person(user,"User","Who interact with Jing")
+
+Container_Boundary(hyprland, "Hyprland"){
+  Component(hyprland_event_management, "Hyprland Event Management", "Hyprland Config", "Handle Hyprland's event")
+  Component(hyprland_ui, "Hyprland User Interface", "Hyprland Config", "Draw appearance, window behavior.")
+  Component(hyprland_shortcut, "Hyprland Shortcut", "Hyprland Config", "Handle Hyprland's shortcut")
+  Component(swww, "SWWW", "Package", "Draw background image")
+}
+
+Container_Boundary(eww, "EWW Widgets"){
+  Component(statusbar, "Statusbar", "EWW Config", "Draw statusbar")
+  Component(dashboard, "Dashboard", "EWW Config", "Draw dashboard")
+  Component(countdower, "Countdower", "EWW Config", "Draw countdower")
+}
+
+Container(scripts, "Scripts", "Bash", "Handle event signals")
+
+System_Ext(linux, "Linux", "The operating system")
+
+Rel(hyprland, hyprland_event_management, "Autostart call")
+Rel(hyprland_event_management, statusbar, "Open")
+Rel(hyprland_event_management, swww, "Draw background")
+
+Rel(user, hyprland_shortcut, "Press")
+Rel(hyprland_shortcut, hyprland_event_management, "Send event")
+Rel(hyprland_shortcut, linux, "Send signals")
+Rel(hyprland_shortcut, scripts, "Calls")
+Rel(hyprland_event_management, hyprland_ui, "Update")
+
+Rel(eww, scripts, "Send/response signals")
+Rel(eww, linux, "Send signals")
+Rel(statusbar, dashboard, "Open")
+Rel(scripts, countdower, "Open")
+
+Rel(scripts, linux, "Send signals")
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml C2_Kaizen_Container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Container Diagram for Jing
+
+Person(user,"User","Who interact with Jing")
+
+System_Boundary(jing, "Jing") {
+  Container(hyprland, "Hyprland", "Hyprland Config", "Wayland compositor")
+  Container(eww, "EWW Widgets", "Eww Config", "Create and handle custom widget")
+  Container(scripts, "Scripts", "Bash", "Handle event signals")
+}
+
+System_Ext(linux, "Linux", "The operating system")
+
+Rel(user, hyprland, "Press shortcut")
+Rel(hyprland, linux, "Send signals")
+Rel(hyprland, scripts, "Call")
+
+Rel(user, eww, "Interact")
+Rel(eww, scripts, "Call")
+Rel(scripts, linux, "Send signals")
+
+@enduml
