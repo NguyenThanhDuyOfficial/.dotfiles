@@ -1,5 +1,6 @@
 ## 🌈 About The Dotfiles
 
+i decided to call this project is "Jing"
 I came to Linux with a lot of surprise at how freely I could do whatever I wanted. It made me wonder — what if I could configure my own Linux system from scratch? I wanted to create a truly awesome environment — a place I could genuinely feel at home.
 
 You’re welcome to use these dotfiles directly, **but I highly recommend treating them as a template** to create your own personalized setup ✨

@@ -1,7 +1,0 @@
-(defvar user '{
-  "home_dir": "/home/Ken",
-  "user_name": "Ken"
-}')
-
-(include "./status-bar/status-bar.yuck")
-(include "./dashboard/dashboard.yuck")

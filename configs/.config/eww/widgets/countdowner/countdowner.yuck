@@ -1,0 +1,19 @@
+(defwindow countdowner
+  :monitor 0
+  :geometry (geometry
+    :x "40px"
+    :y "48px"
+    :width "120px"
+    :height "40px"
+    :anchor "right top")
+  :stacking "fg"
+  :exclusive false
+  :focusable "none"
+(countdowner))
+(defvar countdowner_pid 0)
+(defvar countdowner_time "00:00")
+(defwidget countdowner []
+  (box :class "countdowner_box"
+    (button :class "button" {countdowner_time})
+    )
+  )

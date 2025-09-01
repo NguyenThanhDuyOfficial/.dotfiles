@@ -3,5 +3,6 @@
   "user_name": "Ken"
 }')
 
-(include "./status-bar/status-bar.yuck")
-(include "./dashboard/dashboard.yuck")
+(include "./widgets/status-bar/status-bar.yuck")
+(include "./widgets/dashboard/dashboard.yuck")
+(include "./widgets/countdowner/countdowner.yuck")

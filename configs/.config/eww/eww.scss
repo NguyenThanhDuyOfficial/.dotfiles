@@ -1,5 +1,6 @@
 *{
   all: unset;
 }
-@import "./status-bar/status-bar.scss";
-@import "./dashboard/dashboard.scss";
+@import "./widgets/status-bar/status-bar.scss";
+@import "./widgets/dashboard/dashboard.scss";
+@import "./widgets/countdowner/countdowner.scss"
