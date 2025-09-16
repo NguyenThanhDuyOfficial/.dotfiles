@@ -1,96 +1,52 @@
-## 🌈 About The Dotfiles
+[//]: # "Showcase Section"
+[//]: # "About Section"
 
-i decided to call this project is "Jing"
-I came to Linux with a lot of surprise at how freely I could do whatever I wanted. It made me wonder — what if I could configure my own Linux system from scratch? I wanted to create a truly awesome environment — a place I could genuinely feel at home.
+### 🌟 Hello
 
-You’re welcome to use these dotfiles directly, **but I highly recommend treating them as a template** to create your own personalized setup ✨
+Welcome to my dotfiles. I'm **Ken - Nguyễn Thành Duy** from Vietnamese.
 
-> _You’ll never know how awesome your own dotfiles can be — until you start creating them._
+These dotfiles was created with the purpose of providing a **lightweight, efficient Desktop Environment (Hyprland + Archlinux)** that delivers **high productivity, aesthetics and many many more supporting features!!!**
 
-## 📦 Dependencies
+[//]: # "Features"
 
-Software used in this dotfiles:
+<!-- markdownlint-disable -->
 
-- [Archlinux](https://archlinux.org/)
-- [Hyprland](https://hyprland.org/)
-- [foot](https://codeberg.org/dnkl/foot)
-- [swww](https://github.com/LGFae/swww)
-- [rofi-wayland](https://github.com/lbonn/rofi)
-- CaskaydiaMono Nerd Font
-- Bibata Modern Ice Cursor Theme
-- [Fish](https://fishshell.com/)
-  - [Starship](https://github.com/starship/starship)
-- [Neovim](https://neovim.io/)
-- [eww](https://github.com/elkowar/eww)
-- And many more...
+### 🚀 What I used to make it awesome!!!
 
-## 🚀 Getting Started
+<!-- markdownlint-enable -->
 
-🛠️ _I currently don't plan to write an installation script._
+|                    |                                                                     |
+| ------------------ | ------------------------------------------------------------------- |
+| Linux Distribution | <a href="https://archlinux.org/">Arch Linux</a>                     |
+| Window Manager     | <a href="https://github.com/hyprwm/Hyprland">Hyprland</a>           |
+| Display Manager    | <a href="https://github.com/sddm/sddm">SDDM</a>                     |
+| Cursor Theme       | <a href="https://github.com/ful1e5/Bibata_Cursor">Bibata Cursor</a> |
+| Font Family        | <a href="https://www.nerdfonts.com/">CaskaydiaCove Nerd Font</a>    |
+| Wallpaper          | <a href="https://github.com/LGFae/swww">swww</a>                    |
+| Widget             | <a href="https://github.com/elkowar/eww">Eww</a>                    |
+| Terminal           | <a href="https://codeberg.org/dnkl/foot">Foot</a>                   |
+| Shell              | <a href="https://fishshell.com/">Fish</a>                           |
+| Text Editor        | <a href="https://neovim.io/">Neovim</a>                             |
+| Browser            | <a href="https://librewolf.net/">LibreWolf</a>                      |
+| Input Method       | <a href="https://github.com/fcitx/fcitx5">Fcitx5</a>                |
+| Chat Client        | <a href="https://discord.com/">Discord</a>                          |
+| E-Book Utilities   | <a href="https://github.com/pwmt/zathura">Zathura</a>               |
+|                    |                                                                     |
 
-> I believe it's better if you take the time to explore and install your preferred Linux distribution, compositor, and tools on your own — it'll be a much more rewarding experience.
+[//]: # "Contribute"
 
-### 📝 Prerequisites
+### 💡 How can I add a cool feature?
 
-1. Install a Linux Distribution as your choice
-2. Install [Hyprland](https://wiki.hyprland.org/Getting-Started/Installation/)
-3. Install an AUR helper like [yay](https://github.com/Jguer/yay)
-4. Install software dependencies used in this dotfiles setup
-   _(Feel free to change or add tools as you prefer)_
+Contributions are what make the open source community such an amazing place to **learn, inspire, and create**. Any contributions you make are **greatly appreciated**.
 
-```bash
-yay -S stow foot swww rofi-wayland ttf-cascadia-mono-nerd bibata-cursor-theme fish neovim starship socat
-```
-
-4.1 Install [eww](https://elkowar.github.io/eww)
-
-### ⬇️ Installation
-
-Clone the repository then symlink using stow:
-
-```bash
-git clone https://github.com/NguyenThanhDuyOfficial/.dotfiles && cd .dotfiles && stow -S Configs
-```
-
-### 🔧 Configuration
-
-In this part, you're expected to follow the **DIY (Do It Yourself)** principle: Visit the official websites of the software you use, read the documentation, and configure everything by yourself 💪🏼
-
-### Fixed Issues With Discord
-
-add --enable-features=UseOzonPlatform --ozone-platform=wayland --enable-wayland-ime to desktop file.
-
-## 💡 Usage
-
-This section will be developed continuously throughout the evolution of the dotfiles.
-
-## Roadmap
-
-- [ ] update statusbar
-- [ ] update dashboard
-- [ ] add utility function
-
-## 🤝 Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
+If you have a suggestion that would make this better, please **fork the repo and create a pull request**. Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+3. Commit your Changes (`git commit -m 'feat: add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ## 📄 License
 
-Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
-
-## 📬 Contact
-
-Duy - [nguyenthanhduyofficial@gmail.com](mailto:nguyenthanhduyofficial@gmail.com)
-
-## 💖 Acknowledgments
-
-I want to express my respect to the developers and contributors of the open-source tools that make this dotfiles setup possible.
-This dotfiles setup wouldn’t exist without the hard work of the open-source community. 💖
+Distributed under the **GPL-3.0 License**. See `LICENSE.txt` for more information.
