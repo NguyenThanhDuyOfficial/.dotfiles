@@ -5,7 +5,8 @@
     :y "0px"
     :width "40px"
     :height "100%"
-    :anchor "left center")
+    :anchor "left center"
+  )
   :stacking "fg"
   :exclusive true
   :focusable "none"
@@ -181,7 +182,7 @@
     :orientation "v" :space-evenly false
 
     (brightness)
-    (volume)
+    (vol)
   )
 )
 
@@ -226,40 +227,42 @@
 )
 
 
-;; VOLUME ;;
-;; This widget displays a vertical volume control with an interactive slider.
+;; Volume Widget
 
-(defvar volume-value "100")
-(defvar is-volume-expand false)
+(defvar vol "100")
+(defvar isVolExpand false)
+(defvar isVolMute false)
 
-(defwidget volume[]
+(defwidget vol[]
   (eventbox
-    :class "volume"
-    :onhover "${EWW_CMD} update is-volume-expand=true"
-    :onhoverlost "${EWW_CMD} update is-volume-expand=false"
+    :class "vol"
+    :onhover "${EWW_CMD} update isVolExpand=true"
+    :onhoverlost "${EWW_CMD} update isVolExpand=false"
+    :onscroll "~/.config/scripts/volume.sh -s {}"
 
     (box
       :orientation "v" :space-evenly false
 
       (revealer
-        :transition "slideup" :reveal is-volume-expand
+        :transition "slideup" :reveal isVolExpand
 
         (box
           (scale
             :class "scale"
-            :flipped true :value volume-value :min 0 :max 101 :orientation "v"
-            :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% && ./scripts/update-volume-value.sh" )
+            :flipped true :value vol :min 0 :max 101 :orientation "v"
+            :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% && ${EWW_CMD} update vol={}" )
 
           (label
             :class "label"
             :show-truncated false :wrap true :wrap-mode "char"
-            :text volume-value)
+            :text vol)
         )
       )
 
       (button
         :class "button"
-        "")
+        :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${EWW_CMD} update isVolMute=${!isVolMute}"
+        {isVolMute ? "󰝟" : ""})
     )
   )
 )
