@@ -6,8 +6,8 @@ cat <<EOF
 Usage: ${0##*/} [OPTIONS]
 
 Options:
-  -i          Initialize volume variables
-  -s up|down  Adjust volume (increase or decrease)
+  -i          Initialize brightness variables
+  -s up|down  Adjust brightness (increase or decrease)
   -h          Show this help message and exit
 
 Examples:
@@ -18,26 +18,22 @@ EOF
 
 
 init() {
-  read vol isVolMute <<< "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d %s", $2*100, ($3=="[MUTED]"?"true":"false") }')"
-
-  eww update vol=$vol
-  eww update isVolMute=$isVolMute
+  update
 }
 
-
 update() {
-  eww update vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf "%d", $2*100}')
+  eww update bright=$(brillo | awk -F. '{printf $1}')
 }
 
 
 increase() {
-  wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+  brillo -q -A 3%
   update
 }
 
 
 decrease() {
-  wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+  brillo -q -U 3%
   update
 }
 

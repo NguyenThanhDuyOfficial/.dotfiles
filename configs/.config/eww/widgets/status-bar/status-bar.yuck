@@ -181,41 +181,41 @@
     :class "bottom" :valign "end"
     :orientation "v" :space-evenly false
 
-    (brightness)
+    (bright)
     (vol)
   )
 )
 
 
 ;; BRIGHTNESS ;;
-;; This widget displays a vertical brightness control with an interactive slider.
 
-(defvar brightness-value "100")
-(defvar is-brightness-expand false)
+(defvar bright "100")
+(defvar isBrightExpand false)
 
-(defwidget brightness[]
+(defwidget bright[]
   (eventbox
-    :class "brightness"
-    :onhover "${EWW_CMD} update is-brightness-expand=true"
-    :onhoverlost "${EWW_CMD} update is-brightness-expand=false"
+    :class "bright"
+    :onhover "${EWW_CMD} update isBrightExpand=true"
+    :onhoverlost "${EWW_CMD} update isBrightExpand=false"
+    :onscroll "${scripts}/bright.sh -s {}"
 
     (box
       :orientation "v" :space-evenly false
 
       (revealer
-        :transition "slideup" :reveal is-brightness-expand
+        :transition "slideup" :reveal isBrightExpand
 
         (box
           (scale
             :class "scale"
-            :flipped true :value brightness-value :min 0 :max 101 
+            :flipped true :value bright :min 0 :max 101
             :orientation "v"
-            :onchange "brightnessctl s {}% && ./scripts/update-brightness-value.sh")
+            :onchange "brillo -S {} && ${EWW_CMD} update bright={}")
 
           (label
             :class "label"
             :show-truncated false :wrap true :wrap-mode "char"
-            :text brightness-value)
+            :text bright)
         )
       )
 
@@ -227,7 +227,7 @@
 )
 
 
-;; Volume Widget
+;; VOLUME ;;
 
 (defvar vol "100")
 (defvar isVolExpand false)
@@ -238,7 +238,7 @@
     :class "vol"
     :onhover "${EWW_CMD} update isVolExpand=true"
     :onhoverlost "${EWW_CMD} update isVolExpand=false"
-    :onscroll "~/.config/scripts/volume.sh -s {}"
+    :onscroll "${scripts}/volume.sh -s {}"
 
     (box
       :orientation "v" :space-evenly false
