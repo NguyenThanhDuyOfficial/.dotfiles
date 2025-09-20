@@ -1,4 +1,5 @@
-(defwindow status-bar
+;; STATUSBAR WIDGET ;;
+(defwindow statusbar
   :monitor 0
   :geometry (geometry
     :x "0px"
@@ -10,10 +11,11 @@
   :stacking "fg"
   :exclusive true
   :focusable "none"
-(status-bar))
+(statusbar))
 
 
-(defwidget status-bar[]
+;; STATUSBAR CONTAINER ;;
+(defwidget statusbar[]
   (centerbox
     :orientation "v"
 
@@ -24,6 +26,7 @@
 )
 
 
+;; TOP CONTAINER ;;
 (defwidget top[]
   (box
     :class "top" :valign "start"
@@ -35,96 +38,62 @@
 )
 
 
-;; TIMER ;;
-
-;;
-;;i want 1 widget which count time i work, when i click on widget, it start count time
-;;When i click on widget again, it will stop, THE TIME is REMAIN
-;;when i poweroff, it save the time to data.
-(defvar is_timer_active false)
-(defvar timer_hour "00")
-(defvar timer_min "00")
-
-(defwidget timer[]
-  
-  (box
-    :class "timer"
-    :space-evenly false
-
-    (button
-      :class {is_timer_active ? "active" : "inactive"} :hexpand true
-      :onclick `
-        ${is_timer_active ?
-          "${EWW_CMD} update is_timer_active=false && ./scripts/update_timer_value.sh -s" :
-          "${EWW_CMD} update is_timer_active=true && ./scripts/update_timer_value.sh -r"
-        }
-      `
-
-      "${timer_hour}\\n${timer_min}"
-    )
-  )
-)
-
-
-;; WORKSPACES ;;
-;; This widget displays workspace buttons with dynamic styling based on their active state.
-;;
-;; - The script `eww/scripts/update-workspaces.sh` updates the variable `workspaces-array`.
-;; - `workspaces-array` is a JSON-style array of 0s and 1s:
-;;     - 1 = Active workspace
-;;     - 0 = Inactive workspace
-;;
-;; Each button corresponds to a workspace and is styled with either the "active" or "inactive"
-;; CSS class depending on its state.
-
-(defvar workspace-array "[1,0,0,0,0,0]")
-
-(defwidget workspaces[]
-  (box
-    :class "workspaces"
-    :spacing 4 :orientation "v"
-
-    (button :class {workspace-array[0] == 0 ? "inactive" : "active"} "w")
-    (button :class {workspace-array[1] == 0 ? "inactive" : "active"} "i")
-    (button :class {workspace-array[2] == 0 ? "inactive" : "active"} "s")
-    (button :class {workspace-array[3] == 0 ? "inactive" : "active"} "d")
-    (button :class {workspace-array[4] == 0 ? "inactive" : "active"} "o")
-    (button :class {workspace-array[5] == 0 ? "inactive" : "active"} "m")
-  )
-)
-
-
-;; DASHBOARD;;
-;; This widget controls the visibility of the dashboard window.
-
-(defvar is-dashboard-enabled false)
+;; DASHBOARD ;;
+(defvar isDashboardOpen false)
 
 (defwidget dashboard-button[]
   (box
     :class "dashboard-button"
 
     (button
-      :class {is-dashboard-enabled ? "active" : "inactive"}
+      :class {isDashboardOpen ? "active" : "inactive"}
       :onclick
         {
-          is-dashboard-enabled ?
-          "${EWW_CMD} update is-dashboard-enabled=false && ${EWW_CMD} close dashboard"
+          isDashboardOpen ?
+          "${EWW_CMD} update isDashboardOpen=false && ${EWW_CMD} close dashboard"
           :
-          "${EWW_CMD} update is-dashboard-enabled=true && ${EWW_CMD} open dashboard"
+          "${EWW_CMD} update isDashboardOpen=true && ${EWW_CMD} open dashboard"
         }
       "󰣇")
   )
 )
 
 
+;; WORKSPACES ;;
+;; - The script `$HOME/.config/scripts/workspaces.sh` updates the variable `workspacesArray`.
+;; - `workspacesArray` is a JSON-style array of 0s and 1s:
+;;     - 1 = Active workspace
+;;     - 0 = Inactive workspace
+;;
+;; Each button corresponds to a workspace and is styled with either the "active" or "inactive"
+;; CSS class depending on its state.
+
+(defvar workspaceArray "[1,0,0,0,0,0]")
+
+(defwidget workspaces[]
+  (box
+    :class "workspaces"
+    :spacing 4 :orientation "v"
+
+    (button :class {workspaceArray[0] == 0 ? "inactive" : "active"} "w")
+    (button :class {workspaceArray[1] == 0 ? "inactive" : "active"} "i")
+    (button :class {workspaceArray[2] == 0 ? "inactive" : "active"} "s")
+    (button :class {workspaceArray[3] == 0 ? "inactive" : "active"} "d")
+    (button :class {workspaceArray[4] == 0 ? "inactive" : "active"} "o")
+    (button :class {workspaceArray[5] == 0 ? "inactive" : "active"} "m")
+  )
+)
+
+
+;; CENTER CONTAINER ;;
 (defwidget center[]
   (box
     (clock)
   )
 )
 
-
-(defvar is-calendar-enabled false)
+;; CLOCK ;;
+(defvar isCalOpen false)
 
 (defwidget clock[]
   (box
@@ -132,20 +101,19 @@
     :orientation "v" :space-evenly false
 
     (button
-      :class { is-calendar-enabled ? "active" : "inactive"}
+      :class { isCalOpen ? "active" : "inactive"}
       :onclick 
         {
-          is-calendar-enabled ?
-          "${EWW_CMD} update is-calendar-enabled=false && ${EWW_CMD} close Calendar"
+          isCalOpen ?
+          "${EWW_CMD} update isCalOpen=false && ${EWW_CMD} close calendar_window"
           :
-          "${EWW_CMD} update is-calendar-enabled=true && ${EWW_CMD} open Calendar"
+          "${EWW_CMD} update isCalOpen=true && ${EWW_CMD} open calendar_window"
         }
       {formattime(EWW_TIME, "%H\\n%M")})
   )
 )
 
-
-(defwindow Calendar
+(defwindow cal
   :monitor 0
   :geometry (geometry
     :x "32px"
@@ -156,26 +124,22 @@
   :stacking "fg"
   :exclusive false
   :focusable "none"
-(calendar-widget))
+(cal))
 
 
-
-;; GTK styling is problematic, as mentioned in https://github.com/elkowar/eww/issues/652.
-;; I will revisit this later.
-(defwidget calendar-widget[]
+;; CALENDAR ;;
+;; Due to the limitations of GTK, the calendar is just a basic one.
+;; If you need more advanced features, please consider using a different solution.
+(defwidget cal[]
   (box
-    :class "calendar-box"
+    :class "calendar_box"
     :orientation "v" :space-evenly false
-    (calendar
-      :class "calendar"
-      :day 2 :month 7 )
-    (button
-      "Lunar")
+    (calendar)
   )
-
 )
 
 
+;; BOTTOM CONTAINER ;;
 (defwidget bottom[]
   (box
     :class "bottom" :valign "end"
@@ -188,7 +152,6 @@
 
 
 ;; BRIGHTNESS ;;
-
 (defvar bright "100")
 (defvar isBrightExpand false)
 
@@ -228,7 +191,6 @@
 
 
 ;; VOLUME ;;
-
 (defvar vol "100")
 (defvar isVolExpand false)
 (defvar isVolMute false)

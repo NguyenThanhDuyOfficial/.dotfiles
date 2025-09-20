@@ -1,4 +1,4 @@
-.status-bar {
+.statusbar {
   padding: 0 5px;
   background-color: #24273a;
   color: #cad3f5;
@@ -6,6 +6,8 @@
   font-size: 16px;
 }
 
+
+// TOP CONTAINER //
 .top {
   padding-top: 12px;
 }
@@ -32,17 +34,7 @@
 }
 
 
-.timer {
-
-  button {
-    padding: 4px 0;
-    border-radius: 8px;
-  }
-  .active {
-    background-color: #363a4f;
-  }
-}
-
+// CENTER CONTAINER //
 .clock {
 
   button {
@@ -57,23 +49,25 @@
 }
 
 
-.calendar-box {
-  border-radius: 16px;
+.calendar_window {
+  border-radius: 4px;
   background-color: #24273a;
-  color: #cad3f5;
-  .calendar {
-    margin-top: 8px;
-    padding: 2px 4px;
-    .view {
+  font-size: 16px;
+  color: #a5adcb;
 
-  }}
-  .calendar:selected {
-    border-radius: 8px;
-    background-color: #eed49f;
-    color: #181926;
+  calendar {
+    padding: 2px;
+
+    &:selected {
+      color: #f5a97f;
+    }
+    &.highlight {
+      color: #cad3f5;
+    }
   }
 }
 
+// BOTTOM CONTAINER //
 .bottom {
   padding-bottom: 10px;
 }
