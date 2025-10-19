@@ -1,0 +1,230 @@
+;; STATUSBAR WIDGET ;;
+(defwindow statusbar
+  :monitor 0
+  :geometry (geometry
+    :x "0px"
+    :y "0px"
+    :width "40px"
+    :height "100%"
+    :anchor "left center"
+  )
+  :stacking "fg"
+  :exclusive true
+  :focusable "none"
+(statusbar))
+
+
+;; STATUSBAR CONTAINER ;;
+(defwidget statusbar[]
+  (centerbox
+    :orientation "v"
+
+    (top)
+    (center)
+    (bottom)
+  )
+)
+
+
+;; TOP CONTAINER ;;
+(defwidget top[]
+  (box
+    :class "top" :valign "start"
+    :spacing 8 :orientation "v" :space-evenly false
+
+    (dashboard-button)
+    (workspaces)
+  )
+)
+
+
+;; DASHBOARD ;;
+(defvar isDashboardOpen false)
+
+(defwidget dashboard-button[]
+  (box
+    :class "dashboard-button"
+
+    (button
+      :class {isDashboardOpen ? "active" : "inactive"}
+      :onclick
+        {
+          isDashboardOpen ?
+          "${EWW_CMD} update isDashboardOpen=false && ${EWW_CMD} close dashboard"
+          :
+          "${EWW_CMD} update isDashboardOpen=true && ${EWW_CMD} open dashboard"
+        }
+      "󰣇")
+  )
+)
+
+
+;; WORKSPACES ;;
+;; - The script `$HOME/.config/scripts/workspaces.sh` updates the variable `workspacesArray`.
+;; - `workspacesArray` is a JSON-style array of 0s and 1s:
+;;     - 1 = Active workspace
+;;     - 0 = Inactive workspace
+;;
+;; Each button corresponds to a workspace and is styled with either the "active" or "inactive"
+;; CSS class depending on its state.
+
+(defvar workspaceArray "[1,0,0,0,0,0]")
+
+(defwidget workspaces[]
+  (box
+    :class "workspaces"
+    :spacing 4 :orientation "v"
+
+    (button :class {workspaceArray[0] == 0 ? "inactive" : "active"} "w")
+    (button :class {workspaceArray[1] == 0 ? "inactive" : "active"} "i")
+    (button :class {workspaceArray[2] == 0 ? "inactive" : "active"} "s")
+    (button :class {workspaceArray[3] == 0 ? "inactive" : "active"} "d")
+    (button :class {workspaceArray[4] == 0 ? "inactive" : "active"} "o")
+    (button :class {workspaceArray[5] == 0 ? "inactive" : "active"} "m")
+  )
+)
+
+
+;; CENTER CONTAINER ;;
+(defwidget center[]
+  (box
+    (clock)
+  )
+)
+
+;; CLOCK ;;
+(defvar isCalOpen false)
+
+(defwidget clock[]
+  (box
+    :class "clock" :valign "center"
+    :orientation "v" :space-evenly false
+
+    (button
+      :class { isCalOpen ? "active" : "inactive"}
+      :onclick 
+        {
+          isCalOpen ?
+          "${EWW_CMD} update isCalOpen=false && ${EWW_CMD} close calendar_window"
+          :
+          "${EWW_CMD} update isCalOpen=true && ${EWW_CMD} open calendar_window"
+        }
+      {formattime(EWW_TIME, "%H\\n%M")})
+  )
+)
+
+(defwindow cal
+  :monitor 0
+  :geometry (geometry
+    :x "32px"
+    :y "0px"
+    :width "0"
+    :height "0"
+    :anchor "left center")
+  :stacking "fg"
+  :exclusive false
+  :focusable "none"
+(cal))
+
+
+;; CALENDAR ;;
+;; Due to the limitations of GTK, the calendar is just a basic one.
+;; If you need more advanced features, please consider using a different solution.
+(defwidget cal[]
+  (box
+    :class "calendar_box"
+    :orientation "v" :space-evenly false
+    (calendar)
+  )
+)
+
+
+;; BOTTOM CONTAINER ;;
+(defwidget bottom[]
+  (box
+    :class "bottom" :valign "end"
+    :orientation "v" :space-evenly false
+
+    (bright)
+    (vol)
+  )
+)
+
+
+;; BRIGHTNESS ;;
+(defvar bright "100")
+(defvar isBrightExpand false)
+
+(defwidget bright[]
+  (eventbox
+    :class "bright"
+    :onhover "${EWW_CMD} update isBrightExpand=true"
+    :onhoverlost "${EWW_CMD} update isBrightExpand=false"
+    :onscroll "${scripts}/bright.sh -s {}"
+
+    (box
+      :orientation "v" :space-evenly false
+
+      (revealer
+        :transition "slideup" :reveal isBrightExpand
+
+        (box
+          (scale
+            :class "scale"
+            :flipped true :value bright :min 0 :max 101
+            :orientation "v"
+            :onchange "brillo -S {} && ${EWW_CMD} update bright={}")
+
+          (label
+            :class "label"
+            :show-truncated false :wrap true :wrap-mode "char"
+            :text bright)
+        )
+      )
+
+      (button
+        :class "button"
+        "󰌵")
+    )
+  )
+)
+
+
+;; VOLUME ;;
+(defvar vol "100")
+(defvar isVolExpand false)
+(defvar isVolMute false)
+
+(defwidget vol[]
+  (eventbox
+    :class "vol"
+    :onhover "${EWW_CMD} update isVolExpand=true"
+    :onhoverlost "${EWW_CMD} update isVolExpand=false"
+    :onscroll "${scripts}/volume.sh -s {}"
+
+    (box
+      :orientation "v" :space-evenly false
+
+      (revealer
+        :transition "slideup" :reveal isVolExpand
+
+        (box
+          (scale
+            :class "scale"
+            :flipped true :value vol :min 0 :max 101 :orientation "v"
+            :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% && ${EWW_CMD} update vol={}" )
+
+          (label
+            :class "label"
+            :show-truncated false :wrap true :wrap-mode "char"
+            :text vol)
+        )
+      )
+
+      (button
+        :class "button"
+        :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${EWW_CMD} update isVolMute=${!isVolMute}"
+        {isVolMute ? "󰝟" : ""})
+    )
+  )
+)

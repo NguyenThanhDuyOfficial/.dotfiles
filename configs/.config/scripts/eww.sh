@@ -2,7 +2,7 @@
 
 scripts=~/.config/scripts/
 
-sleep 1s
+sleep 2s
 $scripts/volume.sh -i
 $scripts/bright.sh -i
 

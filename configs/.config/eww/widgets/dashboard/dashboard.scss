@@ -1,8 +1,11 @@
+// DASHBOARD //
 .dashboard {
   font-family: "CaskaydiaCove NFM";
   color: #cad3f5;
 }
 
+
+// PROFILE //
 .profile {
   background-color: #24273a;
   border-radius: 20px;
@@ -12,7 +15,10 @@
     border-color: #8aadf4;
     border-style: solid;
     border-radius: 50%;
-    background-size: cover;}
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
 
   .name {
     padding-top: 12px;

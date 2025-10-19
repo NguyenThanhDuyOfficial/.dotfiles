@@ -1,0 +1,119 @@
+.statusbar {
+  padding: 0 5px;
+  background-color: #24273a;
+  color: #cad3f5;
+  font-family: "CaskaydiaMono Nerd Font Mono";
+  font-size: 16px;
+}
+
+
+// TOP CONTAINER //
+.top {
+  padding-top: 12px;
+}
+
+.dashboard-button {
+  font-size: 24px;
+
+  .active, .inactive:hover {
+    border-radius: 8px;
+    background-color: #363a4f;
+  }
+}
+
+.workspaces {
+  padding: 8px 0;
+
+  .active {
+    font-weight: 900;
+  }
+
+  .inactive {
+    opacity: 0.3;
+  }
+}
+
+
+// CENTER CONTAINER //
+.clock {
+
+  button {
+    font-weight: bold;
+    padding: 8px 0;
+    border-radius: 8px;
+  }
+
+  button:hover, .active{
+    background-color: #363a4f;
+  }
+}
+
+
+.calendar_window {
+  border-radius: 4px;
+  background-color: #24273a;
+  font-size: 16px;
+  color: #a5adcb;
+
+  calendar {
+    padding: 2px;
+
+    &:selected {
+      color: #f5a97f;
+    }
+    &.highlight {
+      color: #cad3f5;
+    }
+  }
+}
+
+// BOTTOM CONTAINER //
+.bottom {
+  padding-bottom: 10px;
+}
+
+.bright {
+  scale trough highlight {
+    background-color: #8aadf4;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .button {
+    padding: 4px 0;
+    font-size: 16px;
+  }
+}
+
+.vol {
+  scale trough highlight {
+    background-color: #c6a0f6;
+  }
+
+  .label {
+    font-weight: bold;
+  }
+
+  .button {
+    padding: 4px 0;
+    font-size: 24px;
+  }
+}
+
+scale {
+  all: unset;
+  padding: 4px 0;
+
+  trough{
+    min-height: 80px;
+    min-width: 10px; 
+    border-radius: 10px;
+    background-color: #494d64;
+
+    highlight {
+      border-radius: 10px;
+    }
+  }
+}

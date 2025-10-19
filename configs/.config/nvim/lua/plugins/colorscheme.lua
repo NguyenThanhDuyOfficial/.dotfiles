@@ -1,6 +1,6 @@
 return {
   { "catppuccin/nvim", opts = {
-    flavour = "latte",
+    flavour = "macchiato",
   } },
   {
     "LazyVim/LazyVim",

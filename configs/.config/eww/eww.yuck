@@ -4,6 +4,6 @@
 }')
 
 (defvar scripts '~/.config/scripts')
-(include "./widgets/status-bar/status-bar.yuck")
+(include "./widgets/statusbar/statusbar.yuck")
 (include "./widgets/dashboard/dashboard.yuck")
 (include "./widgets/countdowner/countdowner.yuck")
