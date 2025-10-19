@@ -5,9 +5,9 @@ import Quickshell.Hyprland
 
 Rectangle {
   id: root
+        Layout.alignment: Qt.AlignVCenter
   implicitWidth: 24
   height: layout.implicitHeight + 16
-  Layout.alignment: Qt.AlignHCenter
   radius: 8
   color: "#414559"
 
