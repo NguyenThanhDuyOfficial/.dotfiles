@@ -16,25 +16,25 @@ Scope {
 
 
     ColumnLayout {
-      anchors.fill: parent
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.top: parent.top
 
-      ColumnLayout {
-        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+      Workspaces {}
+      Pomodoro {}
+    }
 
-        Workspaces {}
-      }
+    ColumnLayout {
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
 
-      ColumnLayout {
-        Layout.alignment: Qt.AlignCenter
+      Clock {}
+    }
 
-        Clock {}
-      }
-
-      ColumnLayout {
-        Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-
-        Workspaces {}
-      }
+    ColumnLayout {
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.bottom: parent.bottom
+      
+      Workspaces {}
     }
   }
 }

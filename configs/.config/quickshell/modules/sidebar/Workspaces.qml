@@ -5,7 +5,7 @@ import Quickshell.Hyprland
 
 Rectangle {
   id: root
-        Layout.alignment: Qt.AlignVCenter
+  Layout.alignment: Qt.AlignHCenter
   implicitWidth: 24
   height: layout.implicitHeight + 16
   radius: 8
