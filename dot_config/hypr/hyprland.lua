@@ -180,6 +180,21 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("alacritty msg create-window || alacritty"))
 
+hl.bind(mainMod .. " + V", function()
+	hl.dispatch(hl.dsp.exec_cmd("qs ipc call popupVolume toggleVolume"))
+	hl.dispatch(hl.dsp.submap("volume"))
+end)
+-- Submap
+
+hl.define_submap("volume", function()
+	hl.bind("up", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"))
+	hl.bind("down", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
+	hl.bind("escape", function()
+		hl.dispatch(hl.dsp.exec_cmd("qs ipc call popupVolume toggleVolume"))
+		hl.dispatch(hl.dsp.submap("reset"))
+	end)
+end)
+
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
@@ -192,7 +207,7 @@ hl.bind(
 	mainMod .. " + M",
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+-- hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 

@@ -7,6 +7,8 @@ import qs.components
 import qs.services
 
 Variants {
+
+
   model: Quickshell.screens
 
   delegate: PanelWindow {
@@ -27,11 +29,23 @@ Variants {
       anchors.horizontalCenter: parent.horizontalCenter
     }
 
-
     Clock {
       anchors.centerIn: parent
     }
-
-
+    PopupWindow {
+      id: popupVolume
+      anchor.window: root
+      anchor.rect.x: parentWindow.width + 8
+      anchor.rect.y: parentWindow.height/2-height/2
+      implicitWidth: 40
+      implicitHeight: 160
+      color: "transparent"
+      visible: true
+      PopupVolume {}
+    }
+    IpcHandler {
+      target: "popupVolume"
+      function toggleVolume(){popupVolume.visible = !popupVolume.visible}
+    }
   }
 }

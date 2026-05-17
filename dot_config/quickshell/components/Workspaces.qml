@@ -27,7 +27,6 @@ Rectangle {
         text: modelData
         opacity: (index+1==Hyprland.focusedWorkspace.id) ? 1 : 0.7
       }
-
     }
   }
 }
