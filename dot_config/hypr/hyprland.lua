@@ -18,7 +18,7 @@ hl.monitor({
 
 -- EXEC-ONE
 hl.on("hyprland.start", function()
-	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
+	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 96")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("fcitx5")
 	hl.exec_cmd("awww-daemon && awww img ~/.config/wallpapers/1.png")
