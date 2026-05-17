@@ -16,6 +16,19 @@ hl.monitor({
 	scale = "auto",
 })
 
+-- EXEC-ONE
+hl.on("hyprland.start", function()
+	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
+	hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("fcitx5")
+	hl.exec_cmd("awww-daemon && awww img ~/.config/wallpapers/1.png")
+	hl.exec_cmd("qs")
+	hl.exec_cmd("alacritty --daemon --socket /tmp/alacritty.sock")
+	hl.exec_cmd(
+		"alacritty msg create-window -e nvim ~/Nexus/Documents/ToDo.md || alacritty -e nvim ~/Nexus/Documents/ToDo.md"
+	)
+end)
+
 -- CONFIG
 local theme = require("theme")
 
@@ -39,7 +52,7 @@ hl.config({
 	},
 	decoration = {
 		rounding = 4,
-		active_opacity = 0.85,
+		active_opacity = 0.9,
 		inactive_opacity = 0.85,
 
 		blur = {
@@ -164,24 +177,14 @@ hl.window_rule({
 local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("rofi -show drun"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("alacritty msg create-window || alacritty"))
 
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
-
-hl.on("hyprland.start", function()
-	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 24")
-	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("fcitx5")
-	hl.exec_cmd("awww-daemon && awww img ~/.config/wallpapers/1.png")
-	hl.exec_cmd("qs")
-	hl.exec_cmd("alacritty --daemon --socket /tmp/alacritty.sock")
-	hl.exec_cmd(
-		"alacritty msg create-window -e nvim ~/Nexus/Documents/ToDo.md || alacritty -e nvim ~/Nexus/Documents/ToDo.md"
-	)
-end)
 
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
