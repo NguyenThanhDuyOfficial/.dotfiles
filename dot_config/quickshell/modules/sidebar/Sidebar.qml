@@ -40,7 +40,7 @@ Variants {
       implicitWidth: 40
       implicitHeight: 160
       color: "transparent"
-      visible: true
+      visible: false
       PopupVolume {}
     }
     IpcHandler {

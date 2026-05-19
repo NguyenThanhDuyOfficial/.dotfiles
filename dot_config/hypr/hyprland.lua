@@ -18,7 +18,7 @@ hl.monitor({
 
 -- EXEC-ONE
 hl.on("hyprland.start", function()
-	hl.exec_cmd("hyprctl setcursor Bibata-Modern-Ice 96")
+	hl.exec_cmd("hyprctl setcursor FernBLZ 24")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("fcitx5")
 	hl.exec_cmd("awww-daemon && awww img ~/.config/wallpapers/1.png")
@@ -27,6 +27,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd(
 		"alacritty msg create-window -e nvim ~/Nexus/Documents/ToDo.md || alacritty -e nvim ~/Nexus/Documents/ToDo.md"
 	)
+	hl.exec_cmd("~/.config/scripts/change_wall_every_hour.sh")
 end)
 
 -- CONFIG
@@ -135,7 +136,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "youtube",
 	match = {
-		title = ".*[Yy]ou[Tt]ube.*",
+		title = ".*(YouTube|youtube).*",
 	},
 	opacity = "1 override",
 	no_blur = true,
@@ -145,7 +146,7 @@ hl.window_rule({
 	match = {
 		initial_class = "zen",
 	},
-	opacity = "0.9 override",
+	opacity = "0.95 override",
 	no_blur = true,
 })
 
@@ -189,6 +190,11 @@ end)
 hl.define_submap("volume", function()
 	hl.bind("up", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"))
 	hl.bind("down", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
+	hl.bind("K", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"))
+	hl.bind("J", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
+	hl.bind("mouse_down", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"))
+	hl.bind("mouse_up", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
+
 	hl.bind("escape", function()
 		hl.dispatch(hl.dsp.exec_cmd("qs ipc call popupVolume toggleVolume"))
 		hl.dispatch(hl.dsp.submap("reset"))
