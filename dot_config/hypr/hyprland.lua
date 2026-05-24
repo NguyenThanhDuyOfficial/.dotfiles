@@ -55,6 +55,7 @@ hl.config({
 		rounding = 4,
 		active_opacity = 0.9,
 		inactive_opacity = 0.85,
+		fullscreen_opacity = 0.9,
 
 		blur = {
 			enabled = true,
@@ -173,6 +174,15 @@ hl.window_rule({
 	float = true,
 })
 
+hl.window_rule({
+	name = "picture in picture",
+	match = { initial_title = "Picture-in-Picture" },
+	float = true,
+	move = "1366-320-8  768-180-8",
+	size = "320 180",
+	pin = true,
+})
+
 -- KEYBINDINGS
 
 local mainMod = "SUPER"
@@ -180,6 +190,17 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("alacritty msg create-window || alacritty"))
+---hl.bind(mainMod .. " + P", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Vault/image.png'))
+
+hl.bind(mainMod .. " + P", hl.dsp.submap("pomodoro"))
+
+hl.define_submap("pomodoro", function()
+	hl.bind("C", hl.dsp.global("quickshell:timer_close"))
+	hl.bind("O", hl.dsp.global("quickshell:timer_open"))
+	hl.bind("S", hl.dsp.global("quickshell:timer_stop"))
+	hl.bind("R", hl.dsp.global("quickshell:timer_run"))
+	hl.bind("escape", hl.dsp.submap("reset"))
+end)
 
 hl.bind(mainMod .. " + V", function()
 	hl.dispatch(hl.dsp.exec_cmd("qs ipc call popupVolume toggleVolume"))
