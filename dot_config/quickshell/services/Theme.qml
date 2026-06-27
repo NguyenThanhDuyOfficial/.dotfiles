@@ -5,6 +5,7 @@ import QtQuick
 import Quickshell
 
 Singleton {
+  readonly property string iconsPath: "file://"+Quickshell.shellDir + "/assets/icons/"
   // CaskaydiaCove Nerd Font
   readonly property int pointSize: 16
   readonly property string family: "CaskaydiaCove NF"

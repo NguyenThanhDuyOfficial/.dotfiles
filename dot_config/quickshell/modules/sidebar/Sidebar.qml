@@ -7,8 +7,6 @@ import qs.components
 import qs.services
 
 Variants {
-
-
   model: Quickshell.screens
 
   delegate: PanelWindow {
@@ -22,7 +20,7 @@ Variants {
       bottom: true
     }
     color: Theme.base
-    implicitWidth: 40
+    implicitWidth: 44
 
     Workspaces { 
       anchors.top: parent.top
@@ -32,6 +30,13 @@ Variants {
     Clock {
       anchors.centerIn: parent
     }
+
+    Internet {
+      panelWindow: root
+      anchors.bottom: parent.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+    }
+
     PopupWindow {
       id: popupVolume
       anchor.window: root
