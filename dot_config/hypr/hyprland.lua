@@ -21,13 +21,9 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprctl setcursor FernBLZ 24")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("fcitx5")
-	hl.exec_cmd("awww-daemon && awww img ~/.config/wallpapers/1.png")
+	hl.exec_cmd("awww-daemon && sleep 1s && ~/.config/scripts/wallpapers.sh")
 	hl.exec_cmd("qs")
 	hl.exec_cmd("alacritty --daemon --socket /tmp/alacritty.sock")
-	hl.exec_cmd(
-		"alacritty msg create-window -e nvim ~/Nexus/Documents/ToDo.md || alacritty -e nvim ~/Nexus/Documents/ToDo.md"
-	)
-	hl.exec_cmd("~/.config/scripts/change_wall_every_hour.sh")
 end)
 
 -- CONFIG
@@ -45,7 +41,7 @@ hl.config({
 			active_border = { colors = { theme.mauve, theme.blue }, angle = 45 },
 		},
 
-		layout = "master",
+		layout = "dwindle",
 
 		resize_on_border = true,
 
@@ -53,9 +49,9 @@ hl.config({
 	},
 	decoration = {
 		rounding = 4,
-		active_opacity = 0.9,
+		active_opacity = 0.90,
 		inactive_opacity = 0.85,
-		fullscreen_opacity = 0.9,
+		fullscreen_opacity = 1,
 
 		blur = {
 			enabled = true,
@@ -128,6 +124,13 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 
 -- WINDOW RULE
 hl.window_rule({
+	name = "waydroid",
+	match = {
+		class = "Waydroid",
+	},
+	opacity = "1 override",
+})
+hl.window_rule({
 	name = "terminal",
 	match = {
 		initial_class = "Alacritty",
@@ -147,7 +150,7 @@ hl.window_rule({
 	match = {
 		initial_class = "zen",
 	},
-	opacity = "0.95 override",
+	opacity = "1 override",
 	no_blur = true,
 })
 
@@ -178,7 +181,7 @@ hl.window_rule({
 	name = "picture in picture",
 	match = { initial_title = "Picture-in-Picture" },
 	float = true,
-	move = "1366-320-8  768-180-8",
+	move = { "(monitor_w - 320 - 8)", "(monitor_h - 180 - 8 )" },
 	size = "320 180",
 	pin = true,
 })
@@ -190,7 +193,10 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("alacritty msg create-window || alacritty"))
----hl.bind(mainMod .. " + P", hl.dsp.exec_cmd('grim -g "$(slurp)" ~/Vault/image.png'))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
+
+-- hl.bind("F9", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
+hl.bind("F10", hl.dsp.pass({ window = "class:^(com\\.obsproject\\.Studio)$" }))
 
 hl.bind(mainMod .. " + P", hl.dsp.submap("pomodoro"))
 
@@ -235,7 +241,7 @@ hl.bind(
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 -- hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+-- hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- Move focus with mainMod + arrow keys
